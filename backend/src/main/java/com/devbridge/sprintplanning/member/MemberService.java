@@ -39,9 +39,10 @@ public class MemberService {
 
   public List<Member> findMemberByTeamIdForSprint(Long teamId, Long sprintId) {
     List<Member> memberList = memberRepository.findByTeamId(teamId);
-    for (Member member:
-         memberList) {
-      member.setPlans(planService.findPlansBySprintIdWithAllocations(sprintId, member.getId()));
+    System.out.println(memberList);
+    for (int i = 1; i < memberList.size()+1; i++){
+      memberList.get(i).setPlans(planService.findPlansBySprintIdWithAllocations(sprintId, memberList.get(i).getId()));
+      System.out.println(memberList);
     }
     return memberList;
   }

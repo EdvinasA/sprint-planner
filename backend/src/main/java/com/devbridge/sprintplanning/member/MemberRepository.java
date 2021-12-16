@@ -33,6 +33,6 @@ public interface MemberRepository {
   @Select("SELECT * FROM member WHERE id=#{id}")
   Member findById(@Param("id") Long id);
 
-  @Select("SELECT * FROM member WHERE member_team_id=#{id} AND is_deleted=false ORDER BY id ASC")
+  @Select("SELECT * FROM member WHERE member_team_id=#{id} ORDER BY id ASC")
   List<Member> findByTeamId(@Param("id") Long id);
 }

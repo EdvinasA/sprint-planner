@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sprint-planning
+    username: CHANGE_ME
+    password: CHANGE_ME
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath*:/db/changelog/changelog_dev.yaml
+    drop-first: true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+server:
+  servlet:
+    context-path: /api
