@@ -1,0 +1,16 @@
+export const ADD_TASK = "addTask";
+export const REMOVE_TASK = "removeTask";
+export const UPDATE_TASK = "updateTask";
+export const UPDATE_CARRYOVER_TASK = "updateCarryoverTask";
+export const CHOOSE_TITLE = "chooseTitle";
+export const CHOOSE_START_DATE = "chooseStartDate";
+export const CHOOSE_END_DATE = "chooseEndDate";
+export const GET_NEW_SPRINT = "getNewSprint";
+export const CREATE_USER_DAYS = "createUserDays";
+export const UPDATE_USER_DAY_TASK = "updateUserDayTask";
+export const CREATE_NEW_SPRINT = "createNewSprint";
+export const CREATE_NEW_SPRINT_PLAN = "createNewSprintPlan";
+export const CREATE_NEW_SPRINT_SUCCESS = "createNewSprintSuccess";
+export const RESET_NEW_SPRINT = "resetNewSprint";
+export const SET_MANAGE_TEAM_USERS = "getManageTeamUsers";
+export const CARRY_OVER_TASKS = "carryOverTask";
