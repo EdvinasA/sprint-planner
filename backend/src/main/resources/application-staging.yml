@@ -1,0 +1,8 @@
+# Config when deployed to Kubernetes
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres-postgresql.infrastructure.svc:5432/kns-jb-team
+    username: kns-jb-team
+    password: SFZpeGDMA8B5WBVNVgkSsL2xJmh39j
+  liquibase:
+    drop-first: true

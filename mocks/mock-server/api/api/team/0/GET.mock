@@ -1,0 +1,37 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+{
+  "id" : 0,
+  "teamName" : "JustasTeam",
+  "projectsCompleted" : 12,
+  "tasksCompleted" : 847,
+  "users" :
+    [
+      {
+        "id": 25,
+        "name": "Vardinis Pavardinis",
+        "role": "Designer",
+        "day": []
+      },
+      {
+        "id": 1,
+        "name": "Vardas Pavardė",
+        "role": "Front-End",
+        "day": []
+      },
+      {
+        "id": 2,
+        "name": "Pavardė Vardas",
+        "role": "Back-End",
+        "day": []
+      },
+      {
+        "id": 3,
+        "name": "Vardinis Pavardinis",
+        "role": "Back-End",
+        "day": []
+      }
+    ]
+}

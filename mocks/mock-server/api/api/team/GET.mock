@@ -1,0 +1,41 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+{
+  "users" : 
+    [
+      {
+        "id": 0,
+        "name": "Vardinis Pavardinis",
+        "role": "tester",
+        "day":
+        [
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Vardas Pavardė",
+        "role": "tester",
+        "day":
+        [
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Pavardė Vardas",
+        "role": "tester",
+        "day":
+        [
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Vardinis Pavardinis",
+        "role": "tester",
+        "day":
+        [
+         ]
+      }
+    ]
+}
