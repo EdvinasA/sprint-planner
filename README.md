@@ -4,9 +4,7 @@
 
 ### Project setup
 
-* clone project
-    * `git clone https://justasbuzaitis@bitbucket.org/devbridge-sourcery/sourcery-academy-2021-fall-team-justas.git`
-* Open sourcery-academy-2021-fall-team-justas catalog using Intellij
+* Open catalog using Intellij
 * `File -> Project settings -> Project -> Set project SDK (Java 11) -> Press apply`
     * If you don't have Java 11, download jdk11 from here https://www.oracle.com/java/technologies/downloads/#java11
 * `File -> Project settings -> Modules -> Plus sign -> import module gradle-> select backend catalog`
