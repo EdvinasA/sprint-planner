@@ -19,11 +19,6 @@ public class PlanController {
     this.planService = planService;
   }
 
-  @PostMapping
-  public List<Plan> createNewPlans(@RequestBody Plan plan) {
-    return planService.createNewPlans(plan);
-  }
-
   @DeleteMapping("{id}")
   public void deletePlan(@PathVariable String id) {
     planService.deletePlanById(Long.parseLong(id));

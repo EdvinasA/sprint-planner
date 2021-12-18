@@ -2,7 +2,9 @@ package com.devbridge.sprintplanning.sprint;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.devbridge.sprintplanning.member.Member;
 import com.devbridge.sprintplanning.member.MemberService;
@@ -30,23 +32,24 @@ public class SprintService {
   }
 
   public Sprint createNewSprint(Sprint sprint) {
-    List<Task> tasksFromDatabase = new ArrayList<>();
     sprint.setCreationDate(LocalDateTime.now());
+    sprint.setStartDate(sprint.getStartDate().plusDays(1));
+    sprint.setEndDate(sprint.getEndDate().plusDays(1));
     sprint.setIsHistorical(false);
     sprint.setIsActive(false);
     sprintRepository.save(sprint);
-    if (sprint.getTasks() != null) {
-      for (Task task :
-              sprint.getTasks()) {
-        task.setSprintId(sprint.getId());
-        tasksFromDatabase.add(taskService.createNewTask(task));
-      }
-      sprint.setTasks(tasksFromDatabase);
+    Map<Long, Long> oldAndNewTaskIds = new HashMap<>();
+    for (Task task:
+            sprint.getTasks()) {
+      Long oldId = task.getId();
+      task.setSprintId(sprint.getId());
+      taskService.createNewTask(task);
+      oldAndNewTaskIds.put(oldId, task.getId());
     }
     if (sprint.getMembersList() != null) {
       for (Member member:
            sprint.getMembersList()) {
-        member.setPlans(createPlans(member.getPlans(), sprint.getId(), sprint.getMemberTeamId()));
+        member.setPlans(createPlans(member.getPlans(), sprint.getId(), member.getId(), oldAndNewTaskIds));
       }
     }
     return sprint;
@@ -67,12 +70,12 @@ public class SprintService {
     return sprint;
   }
 
-  private List<Plan> createPlans(List<Plan> plans, Long sprintId, Long memberTeamId) {
+  private List<Plan> createPlans(List<Plan> plans, Long sprintId, Long memberId, Map<Long, Long> oldAndNewTaskIds) {
     for (Plan plan:
          plans) {
       plan.setSprintId(sprintId);
-      plan.setMemberId(memberTeamId);
-      return planService.createNewPlans(plan);
+      plan.setMemberId(memberId);
+      return planService.createNewPlans(plan, oldAndNewTaskIds);
     }
     return null;
   }

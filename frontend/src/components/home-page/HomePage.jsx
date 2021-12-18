@@ -78,7 +78,7 @@ function HomePage() {
 </EndSprintButton>
             ) }
 
-            {sprint.isActive === false && <StartSprintButton variant="outlined" onClick={handleStartSprint}>START SPRINT</StartSprintButton>}
+            {sprint.isActive === false && sprint.isHistorical === false && <StartSprintButton variant="outlined" onClick={handleStartSprint}>START SPRINT</StartSprintButton>}
       <Container maxWidth={false} className={classes.displayingSprintTitle}>
         <EndSprintModule
           currentSprint={sprint}

@@ -2,11 +2,13 @@ package com.devbridge.sprintplanning.plan;
 
 import com.devbridge.sprintplanning.allocation.Allocation;
 import com.devbridge.sprintplanning.allocation.AllocationService;
+import com.devbridge.sprintplanning.task.Task;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PlanService {
@@ -19,25 +21,25 @@ public class PlanService {
     this.allocationService = allocationService;
   }
 
-  public List<Plan> createNewPlans(Plan plan) {
+  public List<Plan> createNewPlans(Plan plan, Map<Long, Long> oldAndNewIds) {
     List<Plan> listOfNewPlans = new ArrayList<>();
-    listOfNewPlans.add(createPlanWithType(plan, PlanType.CURRENT));
-    listOfNewPlans.add(createPlanWithType(plan, PlanType.INITIAL));
+    listOfNewPlans.add(createPlanWithType(plan, PlanType.CURRENT, oldAndNewIds));
+    listOfNewPlans.add(createPlanWithType(plan, PlanType.INITIAL, oldAndNewIds));
     return listOfNewPlans;
   }
 
-  private Plan createPlanWithType(Plan plan, PlanType planType) {
+  private Plan createPlanWithType(Plan plan, PlanType planType, Map<Long, Long> oldAndNewIds) {
     plan.setCreationDate(LocalDateTime.now());
     plan.setPlanType(planType);
     planRepository.save(plan);
-    plan.setAllocations(allocationsFromDatabase(plan.getAllocations(), plan.getId()));
+    plan.setAllocations(allocationsFromDatabase(plan.getAllocations(), plan.getId(), oldAndNewIds));
     return plan;
   }
 
-  private List<Allocation> allocationsFromDatabase(List<Allocation> listOfAllocations, Long lastInsertedPlanId) {
+  private List<Allocation> allocationsFromDatabase(List<Allocation> listOfAllocations, Long lastInsertedPlanId, Map<Long, Long> oldAndNewIds) {
     List<Allocation> newAllocationListFromDatabase = new ArrayList<>();
     for (Allocation allocation : listOfAllocations) {
-      Allocation newAllocation = allocationService.createNewAllocation(allocation, lastInsertedPlanId);
+      Allocation newAllocation = allocationService.createNewAllocation(allocation, lastInsertedPlanId, oldAndNewIds);
       newAllocationListFromDatabase.add(newAllocation);
     }
     return newAllocationListFromDatabase;

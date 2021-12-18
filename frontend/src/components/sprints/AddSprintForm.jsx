@@ -160,7 +160,6 @@ const AddSprintForm = () => {
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DateRangePicker
             disabled={disableDateField}
-            views={['year', 'month', 'day']}
             disablePast
             startText="Start Date"
             endText="End Date"
