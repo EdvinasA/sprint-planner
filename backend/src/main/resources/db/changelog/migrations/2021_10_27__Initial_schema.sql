@@ -73,6 +73,8 @@ CREATE TABLE allocation(
 CREATE TABLE member_sprint(
   member_id BIGSERIAL,
   sprint_id BIGSERIAL,
+  is_in_sprint BOOLEAN,
+  creation_date TIMESTAMP,
   FOREIGN KEY (member_id) REFERENCES member(id),
   FOREIGN KEY (sprint_id) REFERENCES sprint(id)
 );

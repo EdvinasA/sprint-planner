@@ -1,4 +1,4 @@
-package com.devbridge.sprintplanning.memberteam;
+package com.devbridge.sprintplanning.memberTeam;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

@@ -35,4 +35,8 @@ public interface MemberRepository {
 
   @Select("SELECT * FROM member WHERE member_team_id=#{id} ORDER BY id ASC")
   List<Member> findByTeamId(@Param("id") Long id);
+
+  @Select("SELECT m.id, m.role, m.full_name, m.member_team_id, m.is_deleted, m.creation_date FROM member m "
+          + "INNER JOIN member_sprint ms ON m.id = ms.member_id WHERE ms.sprint_id=#{sprintId}")
+  List<Member> findByTeamIdAndIfMemberIsInSprint(@Param("sprintId") Long sprintId);
 }

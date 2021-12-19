@@ -111,9 +111,9 @@ const TasksTable = ({ classes, editableBoolean, tasks, onDelete }) => {
   }
 
   const typeOptions = [
-    { key: 0, value: "-" },
-    { key: 1, value: "Goal" },
-    { key: 2, value: "Technical" }
+    { key: "None", value: "-" },
+    { key: "Goal", value: "Goal" },
+    { key: "Technical", value: "Technical" }
   ];
 
   const line = "-";
@@ -166,13 +166,13 @@ const TasksTable = ({ classes, editableBoolean, tasks, onDelete }) => {
               <TableCell
                 className={classes.tableBodyType}
               ><Select
-                name="type"
+                name="taskType"
                 label="Type"
                 onChange={(event) => handleChangeInput(event, task)}
-                value={task.type}
+                value={task.taskType}
               >
                 { typeOptions.map(option => (
-                    <MenuItem key={option.key} value={option.value}>
+                    <MenuItem key={option.key} value={option.key}>
                       { option.value }
                     </MenuItem>
                 )) }
@@ -254,7 +254,7 @@ const TasksTable = ({ classes, editableBoolean, tasks, onDelete }) => {
               </TableCell>
               <TableCell
                 className={classes.tableBodyType}
-              >{ task.type }
+              >{ task.taskType }
               </TableCell>
               <TableCell
                 className={classes.tableBodyOldPoints}

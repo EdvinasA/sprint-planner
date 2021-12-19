@@ -4,6 +4,7 @@ import com.devbridge.sprintplanning.allocation.Allocation;
 import com.devbridge.sprintplanning.allocation.AllocationService;
 import com.devbridge.sprintplanning.task.Task;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class PlanService {
     this.allocationService = allocationService;
   }
 
+  @Transactional
   public List<Plan> createNewPlans(Plan plan, Map<Long, Long> oldAndNewIds) {
     List<Plan> listOfNewPlans = new ArrayList<>();
     listOfNewPlans.add(createPlanWithType(plan, PlanType.CURRENT, oldAndNewIds));
@@ -28,7 +30,8 @@ public class PlanService {
     return listOfNewPlans;
   }
 
-  private Plan createPlanWithType(Plan plan, PlanType planType, Map<Long, Long> oldAndNewIds) {
+  @Transactional
+  public Plan createPlanWithType(Plan plan, PlanType planType, Map<Long, Long> oldAndNewIds) {
     plan.setCreationDate(LocalDateTime.now());
     plan.setPlanType(planType);
     planRepository.save(plan);
@@ -36,7 +39,8 @@ public class PlanService {
     return plan;
   }
 
-  private List<Allocation> allocationsFromDatabase(List<Allocation> listOfAllocations, Long lastInsertedPlanId, Map<Long, Long> oldAndNewIds) {
+  @Transactional
+  public List<Allocation> allocationsFromDatabase(List<Allocation> listOfAllocations, Long lastInsertedPlanId, Map<Long, Long> oldAndNewIds) {
     List<Allocation> newAllocationListFromDatabase = new ArrayList<>();
     for (Allocation allocation : listOfAllocations) {
       Allocation newAllocation = allocationService.createNewAllocation(allocation, lastInsertedPlanId, oldAndNewIds);

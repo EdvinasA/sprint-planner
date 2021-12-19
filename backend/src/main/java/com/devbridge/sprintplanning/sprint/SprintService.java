@@ -1,18 +1,19 @@
 package com.devbridge.sprintplanning.sprint;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.devbridge.sprintplanning.member.Member;
 import com.devbridge.sprintplanning.member.MemberService;
+import com.devbridge.sprintplanning.memberSprint.MemberSprintService;
 import com.devbridge.sprintplanning.plan.Plan;
 import com.devbridge.sprintplanning.plan.PlanService;
 import com.devbridge.sprintplanning.task.Task;
 import com.devbridge.sprintplanning.task.TaskService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SprintService {
@@ -20,18 +21,22 @@ public class SprintService {
   private final TaskService taskService;
   private final PlanService planService;
   private final MemberService memberService;
+  private final MemberSprintService memberSprintService;
 
   public SprintService(SprintRepository sprintRepository,
-    TaskService taskService,
-    PlanService planService,
-    MemberService memberService) {
+                       TaskService taskService,
+                       PlanService planService,
+                       MemberService memberService, MemberSprintService memberSprintService) {
     this.sprintRepository = sprintRepository;
     this.taskService = taskService;
     this.planService = planService;
     this.memberService = memberService;
+    this.memberSprintService = memberSprintService;
   }
 
+  @Transactional
   public Sprint createNewSprint(Sprint sprint) {
+    System.out.println(sprint);
     sprint.setCreationDate(LocalDateTime.now());
     sprint.setStartDate(sprint.getStartDate().plusDays(1));
     sprint.setEndDate(sprint.getEndDate().plusDays(1));
@@ -50,6 +55,7 @@ public class SprintService {
       for (Member member:
            sprint.getMembersList()) {
         member.setPlans(createPlans(member.getPlans(), sprint.getId(), member.getId(), oldAndNewTaskIds));
+        memberSprintService.createEntry(sprint.getId(), member.getId(), true);
       }
     }
     return sprint;
@@ -70,7 +76,8 @@ public class SprintService {
     return sprint;
   }
 
-  private List<Plan> createPlans(List<Plan> plans, Long sprintId, Long memberId, Map<Long, Long> oldAndNewTaskIds) {
+  @Transactional
+  public List<Plan> createPlans(List<Plan> plans, Long sprintId, Long memberId, Map<Long, Long> oldAndNewTaskIds) {
     for (Plan plan:
          plans) {
       plan.setSprintId(sprintId);

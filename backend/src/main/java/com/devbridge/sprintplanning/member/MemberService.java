@@ -1,5 +1,6 @@
 package com.devbridge.sprintplanning.member;
 
+import com.devbridge.sprintplanning.memberSprint.MemberSprintService;
 import com.devbridge.sprintplanning.plan.Plan;
 import com.devbridge.sprintplanning.plan.PlanService;
 import org.springframework.stereotype.Service;
@@ -12,10 +13,12 @@ public class MemberService {
 
   private final MemberRepository memberRepository;
   private final PlanService planService;
+  private final MemberSprintService memberSprintService;
 
-  public MemberService(MemberRepository memberRepository, PlanService planService) {
+  public MemberService(MemberRepository memberRepository, PlanService planService, MemberSprintService memberSprintService) {
     this.memberRepository = memberRepository;
     this.planService = planService;
+    this.memberSprintService = memberSprintService;
   }
 
   public Member createNewMember(Member member) {
@@ -39,11 +42,11 @@ public class MemberService {
   }
 
   public List<Member> findMemberByTeamIdForSprint(Long teamId, Long sprintId) {
-    List<Member> memberList = memberRepository.findByTeamId(teamId);
+    List<Member> memberList = memberRepository.findByTeamIdAndIfMemberIsInSprint(sprintId);
     for (Member member:
-         memberList) {
-      List<Plan> plans = planService.findPlansBySprintIdWithAllocations(sprintId, member.getId());
-      member.setPlans(plans);
+            memberList) {
+        List<Plan> plans = planService.findPlansBySprintIdWithAllocations(sprintId, member.getId());
+        member.setPlans(plans);
     }
     return memberList;
   }

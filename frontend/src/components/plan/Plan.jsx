@@ -114,7 +114,8 @@ const TableBodyEmployees = ({ classes, sprint, disableDateField, mainPage, notEd
       if (event.target.value !== "") {
         disableDateField(true);
       }
-    } else if (mainPage === true) {
+    }
+    if (mainPage === true) {
       dispatch(updateUserDayTaskFromMainPage(user.id, editableDay.id, event.target.value, user.plans[0].id, editableDay.dayOfSprint, editableDay.creationDate));
     }
   };

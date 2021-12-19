@@ -17,7 +17,7 @@ public class Task {
 
   private String description;
 
-  private TaskType taskType;
+  private String taskType;
 
   private Integer oldPoints;
 

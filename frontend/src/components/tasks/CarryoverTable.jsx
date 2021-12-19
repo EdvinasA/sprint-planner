@@ -98,7 +98,7 @@ const CarryoverTable = ({ classes, tasks }) => {
                   <TableCell
                     className={classes.tableBodyType}
                   >
-                    {task.type}
+                    {task.taskType}
                   </TableCell>
                   <TableCell
                     className={classes.tableBodyOldPoints}

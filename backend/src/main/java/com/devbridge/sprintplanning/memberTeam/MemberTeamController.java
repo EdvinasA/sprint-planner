@@ -1,4 +1,4 @@
-package com.devbridge.sprintplanning.memberteam;
+package com.devbridge.sprintplanning.memberTeam;
 
 import com.devbridge.sprintplanning.member.Member;
 import com.devbridge.sprintplanning.member.RoleType;

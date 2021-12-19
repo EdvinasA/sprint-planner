@@ -3,6 +3,7 @@ package com.devbridge.sprintplanning.allocation;
 import com.devbridge.sprintplanning.task.Task;
 import com.devbridge.sprintplanning.task.TaskRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ public class AllocationService {
     this.taskRepository = taskRepository;
   }
 
+  @Transactional
   public Allocation createNewAllocation(Allocation allocation, Long lastInsertedPlanId, Map<Long, Long> oldAndNewIds) {
     allocation.setCreationDate(LocalDateTime.now());
     allocation.setPlanId(lastInsertedPlanId);

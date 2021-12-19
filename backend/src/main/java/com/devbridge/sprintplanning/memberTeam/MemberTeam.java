@@ -1,4 +1,4 @@
-package com.devbridge.sprintplanning.memberteam;
+package com.devbridge.sprintplanning.memberTeam;
 
 import java.time.LocalDateTime;
 import java.util.List;
