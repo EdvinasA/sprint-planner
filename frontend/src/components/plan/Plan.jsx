@@ -78,7 +78,7 @@ const TableHeadDatesInWords = ({ classes, sprint, currentPlan, mainPage }) => {
   );
 };
 
-const TableBodyEmployees = ({ classes, sprint, disableDateField, mainPage, notEditable, currentPlan, initialPlan }) => {
+const TableBodyEmployees = ({ classes, sprint, disableDateField, mainPage, notEditable, currentPlan }) => {
   const dispatch = useDispatch();
   const [editableDay, setEditableDay] = React.useState({});
 

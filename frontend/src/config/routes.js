@@ -3,6 +3,7 @@ import HomePage from "../components/home-page/HomePage";
 import ManageTeam from "../components/manage-team/ManageTeam";
 import ErrorPage from "../components/error/ErrorPage";
 import AddSprint from "../features/sprints/AddSprint";
+import Login from "../components/login/Login";
 
 export default [
   {
@@ -22,6 +23,12 @@ export default [
     component: AddSprint,
     exact: true,
     showMenu: true
+  },
+  {
+    path: "/login",
+    component: Login,
+    exact: true,
+    showMenu: false
   },
   {
     component: () => <ErrorPage errorCode="404" />,
