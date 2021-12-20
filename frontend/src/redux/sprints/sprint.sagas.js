@@ -2,11 +2,11 @@ import { takeLatest, call, put } from 'redux-saga/effects';
 import {
   getSprint,
   createSprint,
-  startSprint, endSprint, deleteSprint, updateAllocation,
+  startSprint, endSprint, deleteSprint, updateAllocation, updateTaskPointsInMainPage
 } from './sprintApi';
 import {
   CREATE_SPRINT, DELETE_SPRINT, END_SPRINT,
-  GET_SPRINT, START_SPRINT, UPDATE_TASK_MAIN_PAGE,
+  GET_SPRINT, START_SPRINT, UPDATE_POINTS_IN_MAIN_PAGE, UPDATE_TASK_MAIN_PAGE,
 } from './sprintActionType';
 import {
   createSprintSuccess, deleteSprintSuccess,
@@ -64,6 +64,14 @@ export function* updateAllocationOfActiveSprint(action) {
   }
 }
 
+export function* updateTaskInTasksTable(action) {
+  try {
+    yield call(updateTaskPointsInMainPage, action.payload.task);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 export default function* () {
   yield takeLatest(GET_SPRINT, getSprintSaga);
   yield takeLatest(CREATE_SPRINT, createSprintSaga);
@@ -71,4 +79,5 @@ export default function* () {
   yield takeLatest(END_SPRINT, endSprintSaga);
   yield takeLatest(DELETE_SPRINT, deleteSprintSaga);
   yield takeLatest(UPDATE_TASK_MAIN_PAGE, updateAllocationOfActiveSprint);
+  yield takeLatest(UPDATE_POINTS_IN_MAIN_PAGE, updateTaskInTasksTable);
 }

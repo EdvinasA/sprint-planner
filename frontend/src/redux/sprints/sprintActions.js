@@ -56,10 +56,9 @@ export const updateUserDayTaskFromMainPage = (userId, dayId, taskId, planId, day
   }
 });
 
-export const updateTaskPointsInMainPage = (taskIds, updatedTask) => ({
+export const updateTaskPointsInMainPage = (updatedTask) => ({
   type: actions.UPDATE_POINTS_IN_MAIN_PAGE,
   payload: {
-    taskId: taskIds,
     task: updatedTask
   }
 });

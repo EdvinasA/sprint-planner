@@ -19,6 +19,7 @@ import "typeface-open-sans";
 import { updateTask } from "../../redux/newSprint/newSprintActions";
 import ColorPicker from "../shared/color-picker/ColorPicker";
 import { updateTaskPointsInMainPage } from "../../redux/sprints/sprintActions";
+import { subtotalOldPoints, subtotalNewPoints, subtotalRemainingPoints } from "../../utils/taskUtils";
 
 const TasksTableHeader = ({ classes, editableBoolean }) => {
   return (
@@ -66,7 +67,7 @@ const TasksTable = ({ classes, editableBoolean, tasks, onDelete }) => {
 
     const newFormData = { ...task };
     newFormData[fieldName] = fieldValue;
-    dispatch(updateTaskPointsInMainPage(task.id, newFormData));
+    dispatch(updateTaskPointsInMainPage(newFormData));
   };
 
   const handleLeaveTaskTable = () => {
@@ -88,27 +89,6 @@ const TasksTable = ({ classes, editableBoolean, tasks, onDelete }) => {
     newFormData[fieldName] = fieldValue;
     dispatch(updateTask(newFormData));
   };
-
-  const subtotalOldPoints = (items) => {
-    if (items === undefined) {
-      return 0;
-    }
-    return items.map(({ oldPoints }) => Number(oldPoints)).reduce((sum, i) => sum + i, 0);
-  };
-
-  const subtotalRemainingPoints = (items) => {
-    if (items === undefined) {
-      return 0;
-    }
-    return items.map(({ remainingPoints }) => Number(remainingPoints)).reduce((sum, i) => sum + i, 0);
-  };
-
-  function subtotalNewPoints(items) {
-    if (items === undefined) {
-      return 0;
-    }
-    return items.map(({ newPoints }) => Number(newPoints)).reduce((sum, i) => sum + i, 0);
-  }
 
   const typeOptions = [
     { key: "None", value: "-" },

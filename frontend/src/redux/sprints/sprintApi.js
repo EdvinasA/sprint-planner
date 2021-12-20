@@ -10,6 +10,8 @@ export const startSprint = (id) => putMethod("sprint/start/" + id);
 
 export const updateAllocation = (allocation) => putMethod("allocation", allocation);
 
+export const updateTaskPointsInMainPage = (task) => putMethod("task", task);
+
 export const endSprint = (sprintId) => putMethod("sprint/" + sprintId);
 
 export const deleteSprint = (id) => deleteMethod("sprint", id);

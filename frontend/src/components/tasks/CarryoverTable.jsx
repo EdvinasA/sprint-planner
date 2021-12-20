@@ -15,6 +15,7 @@ import TaskKeyButton from "./task-key-button/TaskKeyButton";
 import taskTableStyles from "./TasksTableStyle";
 import "typeface-open-sans";
 import { updateCarryoverTask } from "../../redux/newSprint/newSprintActions";
+import { subtotalRemainingPoints, subtotalNewPoints, subtotalOldPoints } from "../../utils/taskUtils";
 
 const CarryoverTableHeader = ({ classes }) => {
   return (
@@ -50,27 +51,6 @@ const CarryoverTable = ({ classes, tasks }) => {
     newFormData[fieldName] = fieldValue;
     dispatch(updateCarryoverTask(newFormData));
   };
-
-  const subtotalOldPoints = (items) => {
-    if (items === undefined) {
-      return 0;
-    }
-    return items.map(({ oldPoints }) => Number(oldPoints)).reduce((sum, i) => sum + i, 0);
-  };
-
-  const subtotalRemainingPoints = (items) => {
-    if (items === undefined) {
-      return 0;
-    }
-    return items.map(({ remainingPoints }) => Number(remainingPoints)).reduce((sum, i) => sum + i, 0);
-  };
-
-  function subtotalNewPoints(items) {
-    if (items === undefined) {
-      return 0;
-    }
-    return items.map(({ newPoints }) => Number(newPoints)).reduce((sum, i) => sum + i, 0);
-  }
 
   const footerBackgroundColor = "#F9FAFA";
 

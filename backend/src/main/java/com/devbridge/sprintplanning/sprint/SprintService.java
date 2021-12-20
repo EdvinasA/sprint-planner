@@ -36,7 +36,6 @@ public class SprintService {
 
   @Transactional
   public Sprint createNewSprint(Sprint sprint) {
-    System.out.println(sprint);
     sprint.setCreationDate(LocalDateTime.now());
     sprint.setStartDate(sprint.getStartDate().plusDays(1));
     sprint.setEndDate(sprint.getEndDate().plusDays(1));

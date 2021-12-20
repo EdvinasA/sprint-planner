@@ -21,7 +21,7 @@ export default (state = initialState, { type, payload }) => {
       });
     case actions.UPDATE_POINTS_IN_MAIN_PAGE: {
       return produce(state, draftState => {
-        const index = state.sprint.tasks.findIndex(e => e.id === payload.taskId);
+        const index = state.sprint.tasks.findIndex(e => e.id === payload.task.id);
         draftState.sprint.tasks[index] = payload.task;
       });
     }

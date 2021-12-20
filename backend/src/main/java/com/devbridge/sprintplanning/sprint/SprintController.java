@@ -46,6 +46,9 @@ public class SprintController {
 
   @GetMapping("by-id/{id}")
   public Sprint getSprintById(@PathVariable String id) {
+    if (id.equals("undefined")) {
+      return null;
+    }
     return sprintService.findSprintById(Long.parseLong(id));
   }
 
