@@ -15,7 +15,6 @@ import { getTeam } from "../../redux/manageTeams/manageTeamActions";
 import EndSprintButton from "../buttons/end-sprint-button/EndSprintButton";
 import StartSprintButton from "../buttons/start-sprint-button/StartSprintButton";
 import EndSprintModule from "../sprints/EndSprintModule";
-import { getSprintList } from "../../redux/sprintList/sprintListActions";
 
 function HomePage() {
   const [expanded, setExpanded] = React.useState(false);

@@ -4,6 +4,7 @@ import ManageTeam from "../components/manage-team/ManageTeam";
 import ErrorPage from "../components/error/ErrorPage";
 import AddSprint from "../features/sprints/AddSprint";
 import Login from "../components/login/Login";
+import Register from "../components/register/Register";
 
 export default [
   {
@@ -27,6 +28,12 @@ export default [
   {
     path: "/login",
     component: Login,
+    exact: true,
+    showMenu: false
+  },
+  {
+    path: "/register",
+    component: Register,
     exact: true,
     showMenu: false
   },
