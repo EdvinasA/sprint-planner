@@ -19,11 +19,19 @@ public class Member {
 
   private String fullName;
 
+  private String email;
+
+  private String password;
+
   private Long memberTeamId;
 
   private Boolean isDeleted;
 
   private List<Plan> plans;
+
+  private String accessToken;
+
+  private String refreshToken;
 
   private LocalDateTime creationDate;
 

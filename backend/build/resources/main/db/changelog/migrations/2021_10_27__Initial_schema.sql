@@ -41,6 +41,10 @@ CREATE TABLE member(
   id BIGSERIAL PRIMARY KEY NOT NULL,
   role varchar(20),
   full_name varchar(100),
+  email varchar(255),
+  password varchar(255),
+  access_token varchar(255),
+  refresh_token varchar(255),
   member_team_id BIGINT,
   is_deleted BOOLEAN,
   creation_date TIMESTAMP

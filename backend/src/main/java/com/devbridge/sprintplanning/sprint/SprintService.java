@@ -71,7 +71,7 @@ public class SprintService {
   public Sprint findSprintById(Long id) {
     Sprint sprint = sprintRepository.getSprintById(id);
     sprint.setTasks(taskService.getAllTasksBySprintId(id));
-    sprint.setMembersList(memberService.findMemberByTeamIdForSprint(sprint.getMemberTeamId(), sprint.getId()));
+    sprint.setMembersList(memberService.findMemberByTeamIdForSprint(sprint.getId()));
     return sprint;
   }
 
