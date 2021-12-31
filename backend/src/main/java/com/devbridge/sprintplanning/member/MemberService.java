@@ -69,6 +69,10 @@ public class MemberService implements UserDetailsService {
     return memberRepository.findByTeamId(teamId);
   }
 
+  public Member findMemberByAccessToken(String accessToken) {
+    return memberRepository.findByAccessToken(accessToken);
+  }
+
   public List<Member> findMemberByTeamIdForSprint(Long sprintId) {
     List<Member> memberList = memberRepository.findByTeamIdAndIfMemberIsInSprint(sprintId);
     for (Member member:
@@ -99,8 +103,6 @@ public class MemberService implements UserDetailsService {
     String password = memberLogin.getPassword();
     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
     Authentication authentication = authenticationManager.authenticate(authenticationToken);
-    System.out.println(authentication);
-    System.out.println(authenticationToken);
     successfulAuthentication(request,response,authentication,memberLogin);
   }
 

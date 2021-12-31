@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -26,13 +26,18 @@ public class MemberController {
   @PostMapping("/login")
   public void loginMember(@RequestBody MemberLogin memberLogin,
                           HttpServletRequest request,
-                          HttpServletResponse response) throws IOException, ServletException {
+                          HttpServletResponse response) throws IOException {
     memberService.authenticate(memberLogin, request, response);
   }
 
   @DeleteMapping("{memberId}")
   public void deleteMembersById(@PathVariable String memberId) {
     memberService.deleteMemberById(Long.parseLong(memberId));
+  }
+
+  @GetMapping("/{accessToken}")
+  public Member getMemberByAccessToken(@PathVariable String accessToken) {
+    return memberService.findMemberByAccessToken(accessToken);
   }
 
   @PostMapping
