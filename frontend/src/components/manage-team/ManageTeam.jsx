@@ -37,7 +37,6 @@ function ManageTeam() {
   const [editMemberRoleId, setEditMemberRoleId] = React.useState(null);
   const [displaySaveButton, setDisplaySaveButton] = React.useState(false);
 
-  const members = useSelector((state) => state?.member.member);
   const dispatch = useDispatch();
 
   useEffect(() => {

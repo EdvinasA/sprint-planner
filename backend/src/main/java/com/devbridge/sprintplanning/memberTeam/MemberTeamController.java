@@ -39,9 +39,4 @@ public class MemberTeamController {
   public Member updateMemberRole(@PathVariable String memberId,@PathVariable String role) {
     return memberTeamService.updateMemberRoleInTeam(Long.parseLong(memberId), RoleType.valueOf(role));
   }
-
-  @PostMapping
-  public Member createNewMemberAndInsertIntoTeam(@RequestBody Member member) {
-    return memberTeamService.insertMemberIntoTeam(member);
-  }
 }

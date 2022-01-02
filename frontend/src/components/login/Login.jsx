@@ -41,10 +41,13 @@ export default () => {
       if (response.status === "OK") {
         dispatch(setTrue());
         history.push("");
-        console.log(response);
       }
     });
     setFailed(true);
+  };
+
+  const redirectToRegisterPage = () => {
+    history.push("/register");
   };
 
   const validate = (values) => {
@@ -107,6 +110,10 @@ export default () => {
                   <Button style={{ marginTop: "20px", marginBottom: "20px" }} onClick={handleLoginFormSubmit}>
                       Log in
                   </Button>
+                 Not Registered ?
+                 <Button style={{ marginBottom: "20px" }} onClick={redirectToRegisterPage}>
+                     Register
+                 </Button>
              </Stack>
           </form>
       </Container>

@@ -31,10 +31,6 @@ public class MemberTeamService {
     return memberTeam;
   }
 
-  public Member insertMemberIntoTeam(Member member) {
-    return memberService.createNewMember(member);
-  }
-
   public void deleteMemberFromTeamByMemberId(Long memberId) {
     Member member = memberService.findMemberById(memberId);
     member.setIsDeleted(true);

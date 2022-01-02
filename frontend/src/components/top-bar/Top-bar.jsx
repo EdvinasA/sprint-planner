@@ -25,7 +25,6 @@ function TopBar() {
             </Link>
           </Typography>
           <IconButton className={classes.iconStyleBell} style={{ color: iconColor }}><NotificationsIcon /></IconButton>
-          <IconButton className={classes.iconStyle} style={{ color: iconColor }}><AccountCircleIcon /></IconButton>
           <Settings />
         </Toolbar>
       </AppBar>

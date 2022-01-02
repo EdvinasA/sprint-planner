@@ -2,13 +2,16 @@ import React from "react";
 import { Container, FormControl, Input, InputLabel, Stack } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import sendRequest from "../../api/sendRequest";
+import { setTrue } from "../../redux/slices/loginAlertSlice/loginAlertSlice";
 
 export default () => {
   const history = useHistory();
-  const initialValues = { email: "", password: "", username: "" };
+  const dispatch = useDispatch();
+  const initialValues = { email: "", password: "", fullName: "" };
   const [registerForm, setLoginFormValues] = React.useState(initialValues);
   const [registerFormError, setRegisterFormError] = React.useState({});
-  const [isSubmit, setIsSubmit] = React.useState(false);
 
   const handleLoginFormChange = (event) => {
     const fieldName = event.target.name;
@@ -19,9 +22,19 @@ export default () => {
   const handleRegisterFormSubmit = (event) => {
     event.preventDefault();
     setRegisterFormError(validate(registerForm));
-    if (isSubmit === true) {
-      history.push("/");
-    }
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(registerForm)
+    };
+    const response = sendRequest('member/register', requestOptions);
+    response.then(response => {
+      localStorage.setItem("access_token", response.access_token);
+      if (response.status === "OK") {
+        dispatch(setTrue());
+        history.push("");
+      }
+    });
   };
 
   const validate = (values) => {
@@ -35,11 +48,8 @@ export default () => {
     if (!values.password) {
       errors.password = "Password is required!";
     }
-    if (!values.username) {
-      errors.username = "Username is required!";
-    }
-    if (Object.keys(errors).length === 0) {
-      setIsSubmit(true);
+    if (!values.fullName) {
+      errors.fullName = "full name is required!";
     }
     return errors;
   };
@@ -50,17 +60,17 @@ export default () => {
                 <Stack style={{ alignItems: "center" }}>
                     <h2>Register</h2>
                     <FormControl variant="filled">
-                        <InputLabel htmlFor="Username">Username</InputLabel>
+                        <InputLabel htmlFor="fullName">Full name</InputLabel>
                         <Input
                           style={{ marginTop: "20px", width: "300px" }}
-                          id="Username"
-                          label="Username"
-                          name="username"
+                          id="fullName"
+                          label="Full name"
+                          name="fullName"
                           variant="filled"
-                          value={registerForm.username}
+                          value={registerForm.fullName}
                           onChange={handleLoginFormChange}
                         />
-                        <span style={{ color: "red" }}>{registerFormError.username}</span>
+                        <span style={{ color: "red" }}>{registerFormError.fullName}</span>
                     </FormControl>
                     <FormControl variant="filled">
                         <InputLabel htmlFor="Email">Email</InputLabel>

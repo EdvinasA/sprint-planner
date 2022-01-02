@@ -49,10 +49,13 @@ public class MemberService implements UserDetailsService {
     this.authenticationManager = authenticationManager;
   }
 
-  public Member createNewMember(Member member) {
+  public Member createNewMember(MemberRegister memberRegister) {
+    Member member = new Member();
     member.setIsDeleted(false);
     member.setCreationDate(LocalDateTime.now());
-    member.setPassword(passwordEncoder.encode(member.getPassword()));
+    member.setPassword(passwordEncoder.encode(memberRegister.getPassword()));
+    member.setFullName(memberRegister.getFullName());
+    member.setEmail(memberRegister.getEmail());
     memberRepository.save(member);
     return member;
   }

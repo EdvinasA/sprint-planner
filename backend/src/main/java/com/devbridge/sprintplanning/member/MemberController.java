@@ -23,6 +23,18 @@ public class MemberController {
                                        HttpServletResponse response) throws IOException {
     memberService.authenticate(memberLogin, request, response);
   }
+  @PostMapping("/register")
+  public void registerAndLoginMember(@RequestBody MemberRegister memberRegister,
+                          HttpServletRequest request,
+                          HttpServletResponse response) throws IOException {
+    System.out.println(memberRegister);
+    memberService.createNewMember(memberRegister);
+    MemberLogin memberLogin = new MemberLogin();
+    memberLogin.setEmail(memberRegister.getEmail());
+    memberLogin.setPassword(memberRegister.getPassword());
+    memberService.authenticate(memberLogin, request, response);
+  }
+
 
   @DeleteMapping("{memberId}")
   public void deleteMembersById(@PathVariable String memberId) {
@@ -32,11 +44,6 @@ public class MemberController {
   @GetMapping("/{accessToken}")
   public Member getMemberByAccessToken(@PathVariable String accessToken) {
     return memberService.findMemberByAccessToken(accessToken);
-  }
-
-  @PostMapping
-  public Member createNewMember(@RequestBody Member member) {
-    return memberService.createNewMember(member);
   }
 
   @PutMapping

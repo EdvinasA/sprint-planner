@@ -3,8 +3,9 @@ import Popover from '@mui/material/Popover';
 import { Box, Button, FormControlLabel, FormGroup, IconButton } from "@mui/material";
 import Switch from '@mui/material/Switch';
 import { useDispatch, useSelector } from "react-redux";
-import SettingsIcon from '@mui/icons-material/Settings';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import SettingsHeader from "./SettingsHeader";
 import { getSettings, toggleDarkMode, toggleNotificationAlert } from "../../redux/settingsState/settingsStateActions";
 
@@ -13,6 +14,7 @@ function Settings() {
 
   const settings = useSelector((state) => state?.settingsReducer.settings);
   const dispatch = useDispatch();
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(false);
 
   useEffect(() => {
@@ -23,6 +25,11 @@ function Settings() {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleLogOut = () => {
+    localStorage.setItem("access_token", "");
+    history.push("/login");
+  };
+
   const handleClose = () => {
     setAnchorEl(false);
   };
@@ -31,7 +38,7 @@ function Settings() {
 
   return (
     <Box>
-      <IconButton style={{ color: iconColor }} aria-describedby={id} onClick={handleClick}><SettingsIcon /></IconButton>
+      <IconButton style={{ color: iconColor }} aria-describedby={id} onClick={handleClick}><AccountCircleIcon /></IconButton>
       <Popover
         id={id}
         open={open}
@@ -48,6 +55,9 @@ function Settings() {
           <FormControlLabel control={<Switch checked={settings.darkMode} onClick={() => dispatch(toggleDarkMode())} />} label="Dark mode" />
           <Button>
             User settings
+          </Button>
+          <Button color="error" onClick={handleLogOut}>
+            Log out
           </Button>
         </FormGroup>
       </Popover>

@@ -5,12 +5,11 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class MemberLogin {
+public class MemberRegister {
 
+    private String fullName;
     private String email;
     private String password;
 
-    public MemberLogin() {
-
-    }
 }
+
