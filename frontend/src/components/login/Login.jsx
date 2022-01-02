@@ -1,12 +1,25 @@
 import React from "react";
-import { Container, FormControl, Input, InputLabel, Stack } from "@mui/material";
+import {
+  Alert,
+  Container,
+  FormControl,
+  Input,
+  InputLabel, Snackbar,
+  Stack
+} from "@mui/material";
+import { useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
+import { useHistory } from 'react-router-dom';
+import sendRequest from "../../api/sendRequest";
+import { setTrue } from "../../redux/slices/loginAlertSlice/loginAlertSlice";
 
 export default () => {
-  const initialValues = { email: "", password: "" };
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const initialValues = { email: "edvinasalimas98@gmail.com", password: "123456" };
   const [loginForm, setLoginFormValues] = React.useState(initialValues);
   const [loginFormError, setLoginFormError] = React.useState({});
-  const [isSubmit, setIsSubmit] = React.useState(false);
+  const [failed, setFailed] = React.useState(false);
 
   const handleLoginFormChange = (event) => {
     const fieldName = event.target.name;
@@ -17,6 +30,21 @@ export default () => {
   const handleLoginFormSubmit = (event) => {
     event.preventDefault();
     setLoginFormError(validate(loginForm));
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(loginForm)
+    };
+    const response = sendRequest('member/login', requestOptions);
+    response.then(response => {
+      localStorage.setItem("access_token", response.access_token);
+      if (response.status === "OK") {
+        dispatch(setTrue());
+        history.push("");
+        console.log(response);
+      }
+    });
+    setFailed(true);
   };
 
   const validate = (values) => {
@@ -30,9 +58,6 @@ export default () => {
     if (!values.password) {
       errors.password = "Password is required!";
     }
-    if (Object.keys(errors).length === 0) {
-      setIsSubmit(true);
-    }
     return errors;
   };
 
@@ -40,6 +65,18 @@ export default () => {
       <Container maxWidth={false} style={{ maxWidth: "500px", marginTop: "280px" }}>
           <form onSubmit={handleLoginFormSubmit} style={{ backgroundColor: "white" }}>
              <Stack style={{ alignItems: "center" }}>
+                 <Snackbar
+                   open={failed}
+                   autoHideDuration={2000}
+                   onClose={() => setFailed(false)}
+                   anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                 >
+                     <Alert onClose={() => setFailed(false)} severity="error" sx={{ width: '100%' }}>
+                         Failed!
+                         <br />
+                         <strong>Wrong username or password</strong>
+                     </Alert>
+                 </Snackbar>
                   <h2>Login</h2>
                  <FormControl variant="filled">
                      <InputLabel htmlFor="Email">Email</InputLabel>
@@ -67,7 +104,7 @@ export default () => {
                      />
                      <span style={{ color: "red" }}>{loginFormError.password}</span>
                  </FormControl>
-                  <Button style={{ marginTop: "20px", marginBottom: "20px" }} type="submit">
+                  <Button style={{ marginTop: "20px", marginBottom: "20px" }} onClick={handleLoginFormSubmit}>
                       Log in
                   </Button>
              </Stack>

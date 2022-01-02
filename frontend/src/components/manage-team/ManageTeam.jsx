@@ -20,6 +20,7 @@ import DialogAddNewMember from "./dialog-add-new-member/DialogAddNewMember";
 import DialogRemoveMember from "./dialog-remove-member/DialogRemoveMember";
 import GenericButton from "../buttons/generic-button/GenericButton";
 import listOfRoles from "../../api/ListOfRoles";
+import { getMember } from "../../redux/member/memberActions";
 
 function ManageTeam() {
   const classes = ManageTeamStyles();
@@ -36,10 +37,12 @@ function ManageTeam() {
   const [editMemberRoleId, setEditMemberRoleId] = React.useState(null);
   const [displaySaveButton, setDisplaySaveButton] = React.useState(false);
 
+  const members = useSelector((state) => state?.member.member);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTeam(1));
+    dispatch(getMember(localStorage.getItem("access_token")));
+    dispatch(getTeam(localStorage.getItem("access_token")));
   }, [dispatch]);
 
   const handleExistingMemberRoleChange = (user, event) => {

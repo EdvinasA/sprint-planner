@@ -1,8 +1,8 @@
 import * as actions from "./manageTeamActionType";
 
-export const getTeam = (id) => ({
+export const getTeam = (accessToken) => ({
   type: actions.GET_TEAM,
-  payload: id
+  payload: accessToken
 });
 
 export const getTeamSuccess = (memberTeam) => ({

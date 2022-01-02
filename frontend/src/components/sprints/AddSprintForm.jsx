@@ -46,7 +46,7 @@ const AddSprintForm = () => {
 
   useEffect(() => {
     dispatch(getNewSprint());
-    dispatch(getTeam(1));
+    dispatch(getTeam(localStorage.getItem("access_token")));
   }, [dispatch]);
 
   const filteredMembers = team.membersList.filter(member => member.isDeleted === false);
@@ -121,11 +121,18 @@ const AddSprintForm = () => {
       let arrayOfMemberDays = [];
       for (let j = 0; j < sprint.membersList.length; j += 1) {
         for (let i = 0; i < arrayOfDaysWithoutWeekends.length; i += 1) {
-          const dayObject = { id: j * 10 + i, taskId: null, dayOfSprint: workDayDates[i], memberId: sprint.membersList[j].id };
+          const dayObject = { id: j * 10 + i,
+            taskId: null,
+            dayOfSprint: workDayDates[i],
+            memberId: sprint.membersList[j].id };
           arrayOfMemberDays.push(dayObject);
         }
-        const plans = [{ id: j, memberId: sprint.membersList[j].id, allocations: arrayOfMemberDays, planType: "INITIAL", creationDate: null, sprintId: null }];
-
+        const plans = [{ id: j,
+          memberId: sprint.membersList[j].id,
+          allocations: arrayOfMemberDays,
+          planType: "INITIAL",
+          creationDate: null,
+          sprintId: null }];
         dispatch(createUserDays(sprint.membersList[j].id, plans));
         arrayOfMemberDays = [];
       }

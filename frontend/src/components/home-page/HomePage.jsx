@@ -15,6 +15,7 @@ import { getTeam } from "../../redux/manageTeams/manageTeamActions";
 import EndSprintButton from "../buttons/end-sprint-button/EndSprintButton";
 import StartSprintButton from "../buttons/start-sprint-button/StartSprintButton";
 import EndSprintModule from "../sprints/EndSprintModule";
+import { getMember } from "../../redux/member/memberActions";
 
 function HomePage() {
   const [expanded, setExpanded] = React.useState(false);
@@ -32,11 +33,12 @@ function HomePage() {
   };
 
   const sprint = useSelector((state) => state?.sprints.sprint);
+  const member = useSelector((state) => state?.member.member);
   const activeSprintTemp = useSelector((state) => state?.sprintList.activesprint);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTeam(1));
+    dispatch(getMember(localStorage.getItem("access_token")));
   }, [dispatch]);
 
   useEffect(() => {
