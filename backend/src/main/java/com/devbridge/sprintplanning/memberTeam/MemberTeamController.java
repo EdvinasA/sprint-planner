@@ -20,9 +20,9 @@ public class MemberTeamController {
     this.memberTeamService = memberTeamService;
   }
 
-  @GetMapping("{teamId}")
-  public MemberTeam getTeamWithAllMembersByTeamId(@PathVariable String teamId) {
-    return memberTeamService.getTeamById(Long.parseLong(teamId));
+  @GetMapping("{accessToken}")
+  public MemberTeam getTeamWithAllMembersByTeamId(@PathVariable String accessToken) {
+    return memberTeamService.getTeamByMemberAccessToken(accessToken);
   }
 
   @PostMapping("/new")

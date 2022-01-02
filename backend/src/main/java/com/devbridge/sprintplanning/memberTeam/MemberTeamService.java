@@ -24,9 +24,10 @@ public class MemberTeamService {
     return memberTeam;
   }
 
-  public MemberTeam getTeamById(Long id) {
-    MemberTeam memberTeam = memberTeamRepository.findTeamById(id);
-    memberTeam.setMembersList(memberService.findMembersByTeamId(id));
+  public MemberTeam getTeamByMemberAccessToken(String accessToken) {
+    Member member = memberService.findMemberByAccessToken(accessToken);
+    MemberTeam memberTeam = memberTeamRepository.findTeamById(member.getMemberTeamId());
+    memberTeam.setMembersList(memberService.findMembersByTeamId(member.getMemberTeamId()));
     return memberTeam;
   }
 

@@ -6,6 +6,7 @@ import com.devbridge.sprintplanning.plan.Plan;
 import com.devbridge.sprintplanning.plan.PlanService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -131,8 +132,9 @@ public class MemberService implements UserDetailsService {
     getMemberByEmail.setRefreshToken(refresh_token);
     memberRepository.update(getMemberByEmail);
     Map<String, String> tokens = new HashMap<>();
-    tokens.put("access_token", access_token);
-    tokens.put("refresh_token", refresh_token);
+      tokens.put("access_token", access_token);
+      tokens.put("refresh_token", refresh_token);
+      tokens.put("status", "OK");
     response.setContentType(APPLICATION_JSON_VALUE);
     new ObjectMapper().writeValue(response.getOutputStream(), tokens);
   }
