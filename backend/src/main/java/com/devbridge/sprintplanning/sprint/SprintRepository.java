@@ -35,7 +35,7 @@ public interface SprintRepository {
   @Select("SELECT * FROM sprint WHERE member_team_id = #{id}")
   Sprint getActiveSprintByTeamId(@Param("id") Long id);
 
-  @Select("SELECT * FROM sprint")
+  @Select("SELECT * FROM sprint ORDER BY id ASC")
   List<Sprint> getAllSprints();
 
   @Update("UPDATE sprint SET title=#{sprint.title}, start_date=#{sprint.startDate}, "

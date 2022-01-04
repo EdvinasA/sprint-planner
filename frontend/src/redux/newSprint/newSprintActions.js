@@ -78,9 +78,9 @@ export const createSprint = (sprint) => ({
   }
 });
 
-export const createSprintPlan = (membersList) => ({
-  type: actions.CREATE_NEW_SPRINT_PLAN,
-  payload: [...membersList]
+export const createSprintSuccess = (sprint) => ({
+  type: actions.CREATE_NEW_SPRINT_SUCCESS,
+  sprint
 });
 
 export const resetSprint = (sprint) => ({

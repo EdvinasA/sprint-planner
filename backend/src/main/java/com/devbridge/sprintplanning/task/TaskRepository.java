@@ -34,9 +34,6 @@ public interface TaskRepository {
   @Select("SELECT * FROM task")
   List<Task> findAll();
 
-  @Select("SELECT * FROM task WHERE id=#{id}")
-  Optional<Task> findById(@Param("id") Long id);
-
   @Select("SELECT * FROM task WHERE sprint_id=#{id}")
   List<Task> getAllBySprintId(@Param("id") Long id);
 

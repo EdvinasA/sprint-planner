@@ -56,7 +56,9 @@ const TableHeadDatesInWords = ({ classes, sprint, currentPlan, mainPage }) => {
   function findTotalWorkDays() {
     let totalWorkDays = 0;
     sprint.membersList.forEach(user => {
-      totalWorkDays += findTotalWorkDaysForEmployee(user.plans[0] ? findPlanByType(user.plans)[0].allocations : [], sprint.tasks);
+      if (user.plans !== null) {
+        totalWorkDays += findTotalWorkDaysForEmployee(user.plans[0] ? findPlanByType(user.plans)[0].allocations : [], sprint.tasks);
+      }
     });
     return totalWorkDays;
   }

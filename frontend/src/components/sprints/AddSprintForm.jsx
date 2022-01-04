@@ -12,7 +12,6 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { useDispatch, useSelector } from 'react-redux';
 import AddIcon from '@mui/icons-material/Add';
 import InfoIcon from '@mui/icons-material/Info';
-import nextId from "react-id-generator";
 import { Link } from "react-router-dom";
 import RotatingExpandContent from "../shared/expand-content/RotatingExpandContent";
 import Arrow from "../icons/arrow.png";
@@ -25,7 +24,7 @@ import {
   addTask,
   removeTask,
   chooseEndDate,
-  chooseStartDate, createUserDays, resetSprint, setUsersFromManageTeam, createSprint, chooseTitle, createSprintPlan
+  chooseStartDate, createUserDays, resetSprint, setUsersFromManageTeam, createSprint, chooseTitle
 } from "../../redux/newSprint/newSprintActions";
 import { getDates, getDatesWithoutWeekends, getDays, getDaysWithoutWeekends } from "../../utils/date";
 import { getTeam } from "../../redux/manageTeams/manageTeamActions";
@@ -63,7 +62,6 @@ const AddSprintForm = () => {
       creationDate: null
     }));
     dispatch(createSprint(sprint));
-    dispatch(createSprintPlan(sprint.membersList.map(ml => ml.plans.map(p => p.allocations)).flat().flat()));
     dispatch(resetSprint());
   };
 
@@ -110,6 +108,9 @@ const AddSprintForm = () => {
   };
 
   const handleDateRangePicker = (newValue) => {
+    if (sprint.membersList.length === 0) {
+      dispatch(setUsersFromManageTeam(filteredMembers));
+    }
     setDisableDateField(false);
     setValue(newValue);
     dispatch(chooseStartDate(newValue[0]));
