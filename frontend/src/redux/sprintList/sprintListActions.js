@@ -9,3 +9,9 @@ export const getSprintListSuccess = (sprintList) => ({
   type: actions.GET_SPRINT_LIST_SUCCESS,
   payload: sprintList
 });
+
+export const getSprintListFailed = (error) => ({
+  type: actions.GET_SPRINT_LIST_FAILED,
+  payload: error
+});
+

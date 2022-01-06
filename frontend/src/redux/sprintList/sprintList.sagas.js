@@ -6,6 +6,7 @@ import {
   GET_SPRINT_LIST
 } from './sprintListActionType';
 import {
+  getSprintListFailed,
   getSprintListSuccess,
 } from './sprintListActions';
 
@@ -14,7 +15,7 @@ export function* getSprintListSaga(action) {
     const apiResult = yield call(getSprintList, action.payload);
     yield put(getSprintListSuccess(apiResult));
   } catch (e) {
-    console.error(e);
+    yield put(getSprintListFailed(e))
   }
 }
 
