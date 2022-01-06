@@ -9,3 +9,8 @@ export const getMemberSuccess = (member) => ({
   type: actions.GET_MEMBER_SUCCESS,
   payload: member
 });
+
+export const getMemberFailed = (error) => ({
+  type: actions.GET_MEMBER_FAILED,
+  payload: error
+});

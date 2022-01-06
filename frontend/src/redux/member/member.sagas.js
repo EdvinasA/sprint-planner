@@ -6,6 +6,7 @@ import {
   GET_MEMBER
 } from './memberActionType';
 import {
+  getMemberFailed,
   getMemberSuccess,
 } from './memberActions';
 
@@ -14,7 +15,7 @@ export function* getMemberSaga(action) {
     const apiResult = yield call(getMemberByAccessToken, action.payload);
     yield put(getMemberSuccess(apiResult));
   } catch (e) {
-    console.error(e);
+    yield put(getMemberFailed(e));
   }
 }
 
