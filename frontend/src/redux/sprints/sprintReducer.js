@@ -2,7 +2,8 @@ import produce from "immer";
 import * as actions from "./sprintActionType";
 
 const initialState = {
-  sprint: {}
+  sprint: {},
+  sprintError: {}
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -37,6 +38,16 @@ export default (state = initialState, { type, payload }) => {
       });
     case actions.DELETE_SPRINT_SUCCESS:
       return { ...state };
+    case actions.GET_SPRINT_FAILED:
+      return { ...state, sprintError: payload };
+    case actions.START_SPRINT_FAILED:
+      return { ...state, sprintError: payload };
+    case actions.END_SPRINT_FAILED:
+      return { ...state, sprintError: payload };
+    case actions.UPDATE_TASK_MAIN_PAGE_FAILED:
+      return { ...state, sprintError: payload };
+    case actions.UPDATE_POINTS_IN_MAIN_PAGE_FAILED:
+      return { ...state, sprintError: payload };
     default:
       return state;
   }

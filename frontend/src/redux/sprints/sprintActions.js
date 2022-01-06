@@ -10,6 +10,31 @@ export const getSprintSuccess = (sprint) => ({
   payload: sprint
 });
 
+export const getSprintFailed = (error) => ({
+  type: actions.GET_SPRINT_FAILED,
+  payload: error
+});
+
+export const startSprintFailed = (error) => ({
+  type: actions.START_SPRINT_FAILED,
+  payload: error
+});
+
+export const endSprintFailed = (error) => ({
+  type: actions.END_SPRINT_FAILED,
+  payload: error
+});
+
+export const updateAllocationFailed = (error) => ({
+  type: actions.UPDATE_TASK_MAIN_PAGE_FAILED,
+  payload: error
+});
+
+export const updateTaskPointsInMainPageFailed = (error) => ({
+  type: actions.UPDATE_POINTS_IN_MAIN_PAGE,
+  payload: error
+});
+
 export const createSprint = (sprint) => ({
   type: actions.CREATE_SPRINT,
   payload: sprint,

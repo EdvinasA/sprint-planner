@@ -1,11 +1,16 @@
 export const GET_SPRINT = "getSprint";
 export const GET_SPRINT_SUCCESS = "getSprintSuccess";
+export const GET_SPRINT_FAILED = "getSprintFailed";
 export const CREATE_SPRINT = "createSprint";
 export const CREATE_SPRINT_SUCCESS = "createSprintSuccess";
 export const START_SPRINT = "startSprint";
 export const START_SPRINT_SUCCESS = "startSprintSuccess";
+export const START_SPRINT_FAILED = "startSprintFailed";
 export const END_SPRINT = "endSprint";
+export const END_SPRINT_FAILED = "endSprintFailed";
 export const DELETE_SPRINT = "deleteSprint";
 export const DELETE_SPRINT_SUCCESS = "deleteSprintSuccess";
 export const UPDATE_TASK_MAIN_PAGE = "updateTaskMainPage";
+export const UPDATE_TASK_MAIN_PAGE_FAILED = "updateTaskMainPageFailed";
 export const UPDATE_POINTS_IN_MAIN_PAGE = "updatePointsInMainPage";
+export const UPDATE_POINTS_IN_MAIN_PAGE_FAILED = "updatePointsInMainPageFailed";

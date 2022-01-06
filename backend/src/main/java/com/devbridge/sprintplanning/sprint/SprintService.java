@@ -42,6 +42,22 @@ public class SprintService {
     sprint.setIsHistorical(false);
     sprint.setIsActive(false);
     sprintRepository.save(sprint);
+    Map<Long, Long> oldAndNewTaskIds = addedTasksBySprint(sprint);
+    setMemberPlans(sprint, oldAndNewTaskIds);
+    return sprint;
+  }
+
+  private void setMemberPlans(Sprint sprint, Map<Long, Long> oldAndNewTaskIds) {
+    if (sprint.getMembersList() != null) {
+      for (Member member:
+           sprint.getMembersList()) {
+        member.setPlans(createPlans(member.getPlans(), sprint.getId(), member.getId(), oldAndNewTaskIds));
+        memberSprintService.createEntry(sprint.getId(), member.getId(), true);
+      }
+    }
+  }
+
+  private Map<Long, Long> addedTasksBySprint(Sprint sprint) {
     Map<Long, Long> oldAndNewTaskIds = new HashMap<>();
     for (Task task:
             sprint.getTasks()) {
@@ -50,14 +66,7 @@ public class SprintService {
       taskService.createNewTask(task);
       oldAndNewTaskIds.put(oldId, task.getId());
     }
-    if (sprint.getMembersList() != null) {
-      for (Member member:
-           sprint.getMembersList()) {
-        member.setPlans(createPlans(member.getPlans(), sprint.getId(), member.getId(), oldAndNewTaskIds));
-        memberSprintService.createEntry(sprint.getId(), member.getId(), true);
-      }
-    }
-    return sprint;
+    return oldAndNewTaskIds;
   }
 
   public void endCurrentSprint(Long sprintId) {
@@ -75,8 +84,7 @@ public class SprintService {
     return sprint;
   }
 
-  @Transactional
-  public List<Plan> createPlans(List<Plan> plans, Long sprintId, Long memberId, Map<Long, Long> oldAndNewTaskIds) {
+  private List<Plan> createPlans(List<Plan> plans, Long sprintId, Long memberId, Map<Long, Long> oldAndNewTaskIds) {
     for (Plan plan:
          plans) {
       plan.setSprintId(sprintId);
@@ -84,12 +92,6 @@ public class SprintService {
       return planService.createNewPlans(plan, oldAndNewTaskIds);
     }
     return null;
-  }
-
-  public void endSprint(Sprint sprint) {
-    sprint.setIsHistorical(true);
-    sprint.setIsActive(false);
-    sprintRepository.update(sprint);
   }
 
   public Sprint getActiveSprintByTeamId(Long teamId) {

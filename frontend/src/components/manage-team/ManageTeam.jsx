@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import {
+  Button,
   Container, FormControl, MenuItem, Select,
   Stack,
   Table,
@@ -202,36 +203,38 @@ function ManageTeam() {
 
   return (
       <Container maxWidth={false} className={classes.containerRoot}>
-        <h1> Manage team </h1>
-        <Table style={{ width: "1320px" }}>
-          <TableHead className={classes.manageTeamHeaderTableStyles}>
-            <TableRow>
-              <TableCell style={{ width: "460px", paddingLeft: "80px" }}>Team name</TableCell>
-              <TableCell style={{ width: "342px" }}>Members</TableCell>
-              <TableCell style={{ width: "225px" }}>Projects competed</TableCell>
-              <TableCell style={{ width: "305px" }}>Tasks completed</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody className={classes.manageTeamBodyStyles}>
-            <TableRow>
-              <TableCell style={{ width: "460px", paddingLeft: "80px" }}>{team.teamName}</TableCell>
-              <TableCell style={{ width: "342px" }}>{numberOfMembers}</TableCell>
-              <TableCell style={{ width: "225px" }}>0</TableCell>
-              <TableCell style={{ width: "305px" }}>0</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-        <div className={classes.manageTeamDisplayTeamHeaderStyles}>
+        {team.membersList.length !== 0 ? (
+            <>
+            <h1> Manage team </h1>
+            <Table style={{ width: "1320px" }}>
+              <TableHead className={classes.manageTeamHeaderTableStyles}>
+                <TableRow>
+                  <TableCell style={{ width: "460px", paddingLeft: "80px" }}>Team name</TableCell>
+                  <TableCell style={{ width: "342px" }}>Members</TableCell>
+                  <TableCell style={{ width: "225px" }}>Projects competed</TableCell>
+                  <TableCell style={{ width: "305px" }}>Tasks completed</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody className={classes.manageTeamBodyStyles}>
+                <TableRow>
+                  <TableCell style={{ width: "460px", paddingLeft: "80px" }}>{team.teamName}</TableCell>
+                  <TableCell style={{ width: "342px" }}>{numberOfMembers}</TableCell>
+                  <TableCell style={{ width: "225px" }}>0</TableCell>
+                  <TableCell style={{ width: "305px" }}>0</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          <div className={classes.manageTeamDisplayTeamHeaderStyles}>
           <div className={classes.displaying} style={{ marginTop: "6px" }}>
-            <span style={{ marginInlineStart: "64px" }}>Team members</span>
+          <span style={{ marginInlineStart: "64px" }}>Team members</span>
           </div>
           <div className={classes.displaying}>
-            <Stack direction="row" style={{ display: "inline" }}>
-              <GenericButton widthInPixels="150px" variant="outlined" onClick={handleOpenAddNewMember}>
-                <StyledAddIcon />
-                ADD NEW MEMBER
-              </GenericButton>
-            </Stack>
+          <Stack direction="row" style={{ display: "inline" }}>
+          <GenericButton widthInPixels="150px" variant="outlined" onClick={handleOpenAddNewMember}>
+          <StyledAddIcon />
+          ADD NEW MEMBER
+          </GenericButton>
+          </Stack>
             <DialogAddNewMember
               onCloseToAdd={handleCloseAddNewMemberCreateButton}
               onClose={handleCloseAddNewMember}
@@ -242,19 +245,23 @@ function ManageTeam() {
               open={openAddNewMember}
               listOfRoles={listOfRoles}
             />
-            <div />
+          <div />
           </div>
-        </div>
-        <div className={classes.manageTeamHeaderStyles}>
+          </div>
+          <div className={classes.manageTeamHeaderStyles}>
           <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRowHeaderInformation />
-              </TableHead>
-              <TableRowBodyInformation />
-            </Table>
+          <Table>
+          <TableHead>
+          <TableRowHeaderInformation />
+          </TableHead>
+          <TableRowBodyInformation />
+          </Table>
           </TableContainer>
-        </div>
+          </div>
+            </>
+        ) : (
+            <Button>Create team</Button>
+        )}
       </Container>
   );
 }

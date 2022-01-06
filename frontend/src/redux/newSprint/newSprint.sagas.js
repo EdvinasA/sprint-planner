@@ -1,7 +1,6 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import { createSprint, createSprintPlan } from "./newSprintApi";
 import { CREATE_NEW_SPRINT, CREATE_NEW_SPRINT_PLAN } from "./newSprintActionType";
-import { createSprintSuccess } from "./newSprintActions";
 
 export function* createSprintSaga(action) {
   try {
@@ -13,8 +12,7 @@ export function* createSprintSaga(action) {
 
 export function* createSprintPlanSaga(action) {
   try {
-    const apiResult = yield call(createSprintPlan, action.payload);
-    // yield put(createSprintSuccess(data));
+    yield call(createSprintPlan, action.payload);
   } catch (e) {
     console.error(e);
   }
