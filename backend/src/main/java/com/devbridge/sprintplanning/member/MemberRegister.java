@@ -7,9 +7,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class MemberRegister {
 
-    private String fullName;
-    private String email;
-    private String password;
+  private String fullName;
+  private String email;
+  private String password;
 
 }
 

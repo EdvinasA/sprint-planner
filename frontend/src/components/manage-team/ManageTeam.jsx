@@ -12,7 +12,13 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import "typeface-roboto";
-import { getTeam, addNewMember, deleteMemberFromMemberList, updateMemberRole } from "../../redux/manageTeams/manageTeamActions";
+import {
+  getTeam,
+  addNewMember,
+  deleteMemberFromMemberList,
+  updateMemberRole,
+  createNewTeam
+} from "../../redux/manageTeams/manageTeamActions";
 import ManageTeamStyles from "./ManageTeamStyles";
 import StyledAddIcon from "./styled-add-icon/StyledAddIcon";
 import RemoveButton from "../buttons/remove-button/RemoveButton";
@@ -22,6 +28,7 @@ import DialogRemoveMember from "./dialog-remove-member/DialogRemoveMember";
 import GenericButton from "../buttons/generic-button/GenericButton";
 import listOfRoles from "../../api/ListOfRoles";
 import { getMember } from "../../redux/member/memberActions";
+import CreateTeamDialog from "./create-team/CreateTeamDialog";
 
 function ManageTeam() {
   const classes = ManageTeamStyles();
@@ -37,6 +44,7 @@ function ManageTeam() {
   const [changedMemberRole, setChangedMemberRole] = React.useState(null);
   const [editMemberRoleId, setEditMemberRoleId] = React.useState(null);
   const [displaySaveButton, setDisplaySaveButton] = React.useState(false);
+  const [openCreateTeam, setOpenCreateTeam] = React.useState(false);
 
   const dispatch = useDispatch();
 
@@ -116,6 +124,19 @@ function ManageTeam() {
 
   const handleBackRemoveDialog = () => {
     setOpenRemove(false);
+  };
+
+  const handleOpenCreateTeamDialog = () => {
+    setOpenCreateTeam(true);
+  };
+
+  const handleCloseCreateTeamDialog = () => {
+    setOpenCreateTeam(false);
+  };
+
+  const handleCreateNewTeam = (teamName) => {
+    setOpenCreateTeam(false);
+    dispatch(createNewTeam(teamName));
   };
 
   function TableRowHeaderInformation() {
@@ -260,7 +281,14 @@ function ManageTeam() {
           </div>
             </>
         ) : (
-            <Button>Create team</Button>
+            <>
+            <Button onClick={handleOpenCreateTeamDialog}>Create team</Button>
+            <CreateTeamDialog
+              open={openCreateTeam}
+              onClose={handleCloseCreateTeamDialog}
+              onCloseAdd={handleCreateNewTeam}
+            />
+            </>
         )}
       </Container>
   );

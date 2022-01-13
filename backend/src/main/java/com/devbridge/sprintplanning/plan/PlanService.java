@@ -40,10 +40,14 @@ public class PlanService {
   }
 
   @Transactional
-  public List<Allocation> allocationsFromDatabase(List<Allocation> listOfAllocations, Long lastInsertedPlanId, Map<Long, Long> oldAndNewIds) {
+  public List<Allocation> allocationsFromDatabase(List<Allocation> listOfAllocations,
+                                                  Long lastInsertedPlanId,
+                                                  Map<Long, Long> oldAndNewIds) {
     List<Allocation> newAllocationListFromDatabase = new ArrayList<>();
     for (Allocation allocation : listOfAllocations) {
-      Allocation newAllocation = allocationService.createNewAllocation(allocation, lastInsertedPlanId, oldAndNewIds);
+      Allocation newAllocation = allocationService.createNewAllocation(allocation,
+              lastInsertedPlanId,
+              oldAndNewIds);
       newAllocationListFromDatabase.add(newAllocation);
     }
     return newAllocationListFromDatabase;

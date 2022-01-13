@@ -2,10 +2,10 @@ import { takeLatest, call, put } from 'redux-saga/effects';
 import {
   getTeam,
   addNewMember,
-  deleteMember, updateMemberRole
+  deleteMember, updateMemberRole, createNewTeam
 } from './manageTeamApi';
 import {
-  ADD_NEW_MEMBER, DELETE_MEMBER_FROM_TEAM,
+  ADD_NEW_MEMBER, CREATE_NEW_TEAM, DELETE_MEMBER_FROM_TEAM,
   GET_TEAM, UPDATE_MEMBER_ROLE
 } from './manageTeamActionType';
 import {
@@ -46,9 +46,19 @@ export function* updateMemberRoleSaga(action) {
   }
 }
 
+export function* createNewTeamSaga(action) {
+  try {
+    const apiResult = yield call(createNewTeam, action.payload);
+    yield put(getTeamSuccess(apiResult));
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 export default function* () {
   yield takeLatest(GET_TEAM, getTeamSaga);
   yield takeLatest(ADD_NEW_MEMBER, addNewMemberSaga);
   yield takeLatest(DELETE_MEMBER_FROM_TEAM, deleteMemberSaga);
   yield takeLatest(UPDATE_MEMBER_ROLE, updateMemberRoleSaga);
+  yield takeLatest(CREATE_NEW_TEAM, createNewTeamSaga);
 }

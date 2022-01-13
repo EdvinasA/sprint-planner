@@ -24,6 +24,21 @@ public class MemberTeamService {
     return memberTeam;
   }
 
+  public MemberTeam createTeamAndAddMemberThatCreated(String memberTeamName, String accessToken) {
+    MemberTeam memberTeam = new MemberTeam();
+    memberTeam.setCreationDate(LocalDateTime.now());
+    memberTeam.setTeamName(memberTeamName);
+    memberTeamRepository.save(memberTeam);
+    setMemberToTeamAndUpdateMemberInDatabase(accessToken, memberTeam);
+    return getTeamByMemberAccessToken(accessToken);
+  }
+
+  private void setMemberToTeamAndUpdateMemberInDatabase(String accessToken, MemberTeam memberTeam) {
+    Member member = memberService.findMemberByAccessToken(accessToken);
+    member.setMemberTeamId(memberTeam.getId());
+    memberService.updateMember(member);
+  }
+
   public MemberTeam getTeamByMemberAccessToken(String accessToken) {
     Member member = memberService.findMemberByAccessToken(accessToken);
     MemberTeam memberTeam = memberTeamRepository.findTeamById(member.getMemberTeamId());

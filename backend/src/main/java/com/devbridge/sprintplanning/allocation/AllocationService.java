@@ -1,12 +1,9 @@
 package com.devbridge.sprintplanning.allocation;
 
-import com.devbridge.sprintplanning.task.Task;
-import com.devbridge.sprintplanning.task.TaskRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,11 +11,9 @@ import java.util.Map;
 public class AllocationService {
 
   private final AllocationRepository allocationRepository;
-  private final TaskRepository taskRepository;
 
-  public AllocationService(AllocationRepository allocationRepository, TaskRepository taskRepository) {
+  public AllocationService(AllocationRepository allocationRepository) {
     this.allocationRepository = allocationRepository;
-    this.taskRepository = taskRepository;
   }
 
   @Transactional

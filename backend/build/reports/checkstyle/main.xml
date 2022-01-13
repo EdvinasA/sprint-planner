@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.37">
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\SprintPlanningApplication.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\allocation\Allocation.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\allocation\AllocationController.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\allocation\AllocationRepository.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\allocation\AllocationService.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\beans\Beans.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\config\WebConfig.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\filter\CustomAuthenticationFilter.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\handlers\EntityNotFoundException.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\handlers\GlobalExceptionHandler.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\memberSprint\MemberSprint.java">
+<error line="1" column="9" severity="error" message="Package name &apos;com.devbridge.sprintplanning.memberSprint&apos; must match pattern &apos;^[a-z]+(\.[a-z][a-z0-9]*)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"/>
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\memberSprint\MemberSprintRepository.java">
+<error line="1" column="9" severity="error" message="Package name &apos;com.devbridge.sprintplanning.memberSprint&apos; must match pattern &apos;^[a-z]+(\.[a-z][a-z0-9]*)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"/>
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\memberSprint\MemberSprintService.java">
+<error line="1" column="9" severity="error" message="Package name &apos;com.devbridge.sprintplanning.memberSprint&apos; must match pattern &apos;^[a-z]+(\.[a-z][a-z0-9]*)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"/>
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\memberTeam\MemberTeam.java">
+<error line="1" column="9" severity="error" message="Package name &apos;com.devbridge.sprintplanning.memberTeam&apos; must match pattern &apos;^[a-z]+(\.[a-z][a-z0-9]*)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"/>
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\memberTeam\MemberTeamController.java">
+<error line="1" column="9" severity="error" message="Package name &apos;com.devbridge.sprintplanning.memberTeam&apos; must match pattern &apos;^[a-z]+(\.[a-z][a-z0-9]*)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"/>
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\memberTeam\MemberTeamRepository.java">
+<error line="1" column="9" severity="error" message="Package name &apos;com.devbridge.sprintplanning.memberTeam&apos; must match pattern &apos;^[a-z]+(\.[a-z][a-z0-9]*)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"/>
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\memberTeam\MemberTeamService.java">
+<error line="1" column="9" severity="error" message="Package name &apos;com.devbridge.sprintplanning.memberTeam&apos; must match pattern &apos;^[a-z]+(\.[a-z][a-z0-9]*)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"/>
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\member\Member.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\member\MemberController.java">
+<error line="32" column="3" severity="error" message="&apos;METHOD_DEF&apos; should be separated from previous statement." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\member\MemberLogin.java">
+<error line="10" column="5" severity="error" message="&apos;member def modifier&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="11" column="5" severity="error" message="&apos;member def modifier&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="13" column="5" severity="error" message="&apos;ctor def modifier&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="15" column="5" severity="error" message="&apos;ctor def rcurly&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\member\MemberRegister.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\member\MemberRepository.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\member\MemberService.java">
+<error line="9" column="8" severity="error" message="Unused import - org.springframework.http.HttpStatus." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="27" column="17" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - java.util.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+<error line="42" severity="error" message="Line is longer than 120 characters (found 168)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="81" column="9" severity="error" message="&apos;for&apos; child has incorrect indentation level 8, expected level should be 6." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="82" column="9" severity="error" message="&apos;for&apos; child has incorrect indentation level 8, expected level should be 6." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="105" severity="error" message="Line is longer than 120 characters (found 122)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="114" severity="error" message="Line is longer than 120 characters (found 144)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="116" column="12" severity="error" message="Local variable name &apos;access_token&apos; must match pattern &apos;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
+<error line="118" column="64" severity="error" message="WhitespaceAround: &apos;+&apos; is not followed by whitespace. Empty blocks may only be represented as {} when not part of a multi-block statement (4.1.3)" source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="120" severity="error" message="Line is longer than 120 characters (found 128)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="123" column="12" severity="error" message="Local variable name &apos;refresh_token&apos; must match pattern &apos;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
+<error line="127" severity="error" message="Line is longer than 120 characters (found 128)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="138" column="3" severity="error" message="&apos;method def&apos; child has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="139" column="3" severity="error" message="&apos;method def&apos; child has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\member\RoleType.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\plan\Plan.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\plan\PlanController.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\plan\PlanRepository.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\plan\PlanService.java">
+<error line="5" column="8" severity="error" message="Unused import - com.devbridge.sprintplanning.task.Task." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\plan\PlanType.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\security\SecurityConfig.java">
+<error line="19" column="5" severity="error" message="&apos;member def modifier&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="20" column="5" severity="error" message="&apos;member def modifier&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="20" column="41" severity="error" message="Member name &apos;bCryptPasswordEncoder&apos; must match pattern &apos;^[a-z][a-z0-9][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck"/>
+<error line="22" severity="error" message="Line is longer than 120 characters (found 145)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="22" column="5" severity="error" message="&apos;ctor def modifier&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="22" column="122" severity="error" message="Parameter name &apos;bCryptPasswordEncoder&apos; must match pattern &apos;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"/>
+<error line="23" column="9" severity="error" message="&apos;ctor def&apos; child has incorrect indentation level 8, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="24" column="9" severity="error" message="&apos;ctor def&apos; child has incorrect indentation level 8, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="25" column="5" severity="error" message="&apos;ctor def rcurly&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="27" column="5" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="30" column="9" severity="error" message="&apos;method def&apos; child has incorrect indentation level 8, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="31" column="5" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="33" column="5" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="35" column="9" severity="error" message="&apos;method def&apos; child has incorrect indentation level 8, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="38" column="5" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="40" column="5" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="42" column="9" severity="error" message="&apos;method def&apos; child has incorrect indentation level 8, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="43" column="9" severity="error" message="&apos;method def&apos; child has incorrect indentation level 8, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="45" column="9" severity="error" message="&apos;method def&apos; child has incorrect indentation level 8, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="46" column="5" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 4, expected level should be 2." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\sprint\Sprint.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\sprint\SprintController.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\sprint\SprintRepository.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\sprint\SprintService.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\task\Task.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\task\TaskRepository.java">
+<error line="13" column="8" severity="error" message="Unused import - java.util.Optional." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\task\TaskService.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\task\TaskType.java">
+</file>
+<file name="C:\Users\Beast\Desktop\Programavimas\Spring apps\sprint-planner\backend\src\main\java\com\devbridge\sprintplanning\task\TasksController.java">
+</file>
+</checkstyle>

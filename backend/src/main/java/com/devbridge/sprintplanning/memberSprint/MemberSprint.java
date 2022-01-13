@@ -11,13 +11,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class MemberSprint {
 
-    private Long id;
+  private Long id;
 
-    private Long memberId;
+  private Long memberId;
 
-    private Long sprintId;
+  private Long sprintId;
 
-    private Boolean isInSprint;
+  private Boolean isInSprint;
 
-    private LocalDateTime creationDate;
+  private LocalDateTime creationDate;
 }

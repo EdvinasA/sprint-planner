@@ -36,3 +36,13 @@ export const deleteMemberFromMemberList = (id) => ({
   type: actions.DELETE_MEMBER_FROM_TEAM,
   payload: id
 });
+
+export const createNewTeam = (teamName) => ({
+  type: actions.CREATE_NEW_TEAM,
+  payload: teamName
+});
+
+export const createNewTeamSuccess = (team) => ({
+  type: actions.CREATE_NEW_TEAM_SUCCESS,
+  payload: team
+});

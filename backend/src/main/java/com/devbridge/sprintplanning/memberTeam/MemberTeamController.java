@@ -25,6 +25,11 @@ public class MemberTeamController {
     return memberTeamService.getTeamByMemberAccessToken(accessToken);
   }
 
+  @GetMapping("{memberTeamName}/{accessToken}")
+  public MemberTeam getTeamWithAllMembersByTeamId(@PathVariable String memberTeamName, @PathVariable String accessToken) {
+    return memberTeamService.createTeamAndAddMemberThatCreated(memberTeamName, accessToken);
+  }
+
   @PostMapping("/new")
   public MemberTeam createNewTeam(@RequestBody MemberTeam memberTeam) {
     return memberTeamService.createTeam(memberTeam);

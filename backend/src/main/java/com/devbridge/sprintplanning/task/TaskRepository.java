@@ -39,4 +39,5 @@ public interface TaskRepository {
 
   @Delete("DELETE FROM task WHERE id=#{id}")
   void deleteById(@Param("id") Long id);
+
 }
