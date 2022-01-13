@@ -22,7 +22,7 @@ export default (state = initialState, { type, payload }) => {
     case actions.GET_TEAM_SUCCESS:
       return { ...state, memberTeam: payload };
     case actions.CREATE_NEW_TEAM_SUCCESS:
-      return { ...state, memberTeamName: payload };
+      return { ...state, memberTeam: payload };
     case actions.ADD_NEW_MEMBER:
       return { ...state,
         memberTeam:
