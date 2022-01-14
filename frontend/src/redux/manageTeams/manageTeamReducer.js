@@ -13,8 +13,7 @@ const initialState = {
     membersList: [
 
     ]
-  },
-  memberTeamName: {}
+  }
 };
 
 export default (state = initialState, { type, payload }) => {

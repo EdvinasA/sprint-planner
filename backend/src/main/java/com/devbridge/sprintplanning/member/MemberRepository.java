@@ -46,4 +46,5 @@ public interface MemberRepository {
 
   @Select("SELECT * FROM member WHERE access_token=#{accessToken}")
   Member findByAccessToken(@Param("accessToken") String accessToken);
+
 }

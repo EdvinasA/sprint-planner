@@ -6,7 +6,7 @@ export const getTeam = (id) => getMethod("member-team/" + id);
 
 export const addNewMember = (member) => postMethod("member-team", member);
 
-export const createNewTeam = (memberTeamName, memberAccessToken) => postMethod("member-team/" + memberTeamName + "/" + memberAccessToken);
+export const createNewTeam = (memberTeamName) => postMethod("member-team/" + memberTeamName + "/" + localStorage.getItem("access_token"));
 
 export const deleteMember = (id) => putMethod("member-team/delete/" + id);
 

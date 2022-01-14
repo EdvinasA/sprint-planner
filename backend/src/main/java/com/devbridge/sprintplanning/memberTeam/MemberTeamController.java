@@ -22,11 +22,17 @@ public class MemberTeamController {
 
   @GetMapping("{accessToken}")
   public MemberTeam getTeamWithAllMembersByTeamId(@PathVariable String accessToken) {
+    if (accessToken == null || accessToken.equals("undefined")) {
+      return null;
+    }
     return memberTeamService.getTeamByMemberAccessToken(accessToken);
   }
 
-  @GetMapping("{memberTeamName}/{accessToken}")
+  @PostMapping("{memberTeamName}/{accessToken}")
   public MemberTeam getTeamWithAllMembersByTeamId(@PathVariable String memberTeamName, @PathVariable String accessToken) {
+    if (accessToken == null || accessToken.equals("undefined")) {
+      return null;
+    }
     return memberTeamService.createTeamAndAddMemberThatCreated(memberTeamName, accessToken);
   }
 

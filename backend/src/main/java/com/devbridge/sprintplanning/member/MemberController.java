@@ -1,5 +1,6 @@
 package com.devbridge.sprintplanning.member;
 
+import com.devbridge.sprintplanning.memberTeam.MemberTeamListDisplay;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "member")
@@ -34,7 +36,6 @@ public class MemberController {
   public void registerAndLoginMember(@RequestBody MemberRegister memberRegister,
                           HttpServletRequest request,
                           HttpServletResponse response) throws IOException {
-    System.out.println(memberRegister);
     memberService.createNewMember(memberRegister);
     MemberLogin memberLogin = new MemberLogin();
     memberLogin.setEmail(memberRegister.getEmail());

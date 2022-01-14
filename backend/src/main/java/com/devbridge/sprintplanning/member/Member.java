@@ -23,7 +23,7 @@ public class Member {
 
   private String password;
 
-  private Long memberTeamId;
+  private List<Long> memberTeamId;
 
   private Boolean isDeleted;
 

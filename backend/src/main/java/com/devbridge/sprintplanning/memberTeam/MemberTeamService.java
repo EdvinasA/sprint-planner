@@ -6,6 +6,8 @@ import com.devbridge.sprintplanning.member.RoleType;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MemberTeamService {
@@ -35,15 +37,31 @@ public class MemberTeamService {
 
   private void setMemberToTeamAndUpdateMemberInDatabase(String accessToken, MemberTeam memberTeam) {
     Member member = memberService.findMemberByAccessToken(accessToken);
-    member.setMemberTeamId(memberTeam.getId());
+    member.getMemberTeamId().add(memberTeam.getId());
     memberService.updateMember(member);
   }
 
   public MemberTeam getTeamByMemberAccessToken(String accessToken) {
     Member member = memberService.findMemberByAccessToken(accessToken);
-    MemberTeam memberTeam = memberTeamRepository.findTeamById(member.getMemberTeamId());
-    memberTeam.setMembersList(memberService.findMembersByTeamId(member.getMemberTeamId()));
+    MemberTeam memberTeam = memberTeamRepository.findTeamById(1L);
+    memberTeam.setMembersList(memberService.findMembersByTeamId(1L));
     return memberTeam;
+  }
+
+  public List<MemberTeamListDisplay> getTeamListByMemberAccessToken(String accessToken) {
+    List<MemberTeamListDisplay> memberTeamListDisplayList = new ArrayList<>();
+//    List<Long> listOfMemberTeamIds = memberRepository.findMemberTeamIdsByAccessToken(accessToken);
+//    for (Long id:
+//            listOfMemberTeamIds) {
+//      MemberTeamListDisplay memberTeamListDisplay = new MemberTeamListDisplay();
+//      memberTeamListDisplay.setId(id);
+//      memberTeamListDisplay.setTeamName(memberTeamService.getTeamById(id).getTeamName());
+//    }
+    return memberTeamListDisplayList;
+  }
+
+  public MemberTeam getTeamById(Long id) {
+    return memberTeamRepository.findTeamById(id);
   }
 
   public void deleteMemberFromTeamByMemberId(Long memberId) {
