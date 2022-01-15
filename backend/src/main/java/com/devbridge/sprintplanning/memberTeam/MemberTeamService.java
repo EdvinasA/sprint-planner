@@ -32,7 +32,7 @@ public class MemberTeamService {
     memberTeam.setTeamName(memberTeamName);
     memberTeamRepository.save(memberTeam);
     setMemberToTeamAndUpdateMemberInDatabase(accessToken, memberTeam);
-    return getTeamByMemberAccessToken(accessToken);
+    return getTeamByMemberAccessToken(accessToken, memberTeam.getId());
   }
 
   private void setMemberToTeamAndUpdateMemberInDatabase(String accessToken, MemberTeam memberTeam) {
@@ -41,10 +41,10 @@ public class MemberTeamService {
     memberService.updateMember(member);
   }
 
-  public MemberTeam getTeamByMemberAccessToken(String accessToken) {
+  public MemberTeam getTeamByMemberAccessToken(String accessToken, Long teamId) {
     Member member = memberService.findMemberByAccessToken(accessToken);
-    MemberTeam memberTeam = memberTeamRepository.findTeamById(1L);
-    memberTeam.setMembersList(memberService.findMembersByTeamId(1L));
+    MemberTeam memberTeam = memberTeamRepository.findTeamById(teamId);
+    memberTeam.setMembersList(memberService.findMembersByTeamId(teamId));
     return memberTeam;
   }
 

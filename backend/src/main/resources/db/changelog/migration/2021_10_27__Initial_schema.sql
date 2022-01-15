@@ -75,10 +75,21 @@ CREATE TABLE allocation(
 
 --changeset Povilas:7
 CREATE TABLE member_sprint(
+  id BIGSERIAL PRIMARY KEY NOT NULL,
   member_id BIGSERIAL,
   sprint_id BIGSERIAL,
   is_in_sprint BOOLEAN,
   creation_date TIMESTAMP,
   FOREIGN KEY (member_id) REFERENCES member(id),
   FOREIGN KEY (sprint_id) REFERENCES sprint(id)
+);
+
+--changeset Povilas:8
+CREATE TABLE member_team_list(
+  id BIGSERIAL PRIMARY KEY NOT NULL,
+  member_id BIGSERIAL,
+  member_team_id BIGSERIAL,
+  FOREIGN KEY (member_id) REFERENCES member(id),
+  FOREIGN KEY (member_team_id) REFERENCES member_team(id),
+  creation_date TIMESTAMP
 );

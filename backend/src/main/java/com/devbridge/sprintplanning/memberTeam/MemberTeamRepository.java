@@ -18,4 +18,5 @@ public interface MemberTeamRepository {
 
   @Select("SELECT * FROM member_team WHERE id=#{id}")
   MemberTeam findTeamById(@Param("id") Long id);
+
 }
