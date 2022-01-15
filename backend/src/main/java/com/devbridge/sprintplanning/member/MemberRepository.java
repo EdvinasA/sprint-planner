@@ -14,16 +14,15 @@ import java.util.List;
 @Mapper
 @Repository
 public interface MemberRepository {
-  @Insert("INSERT INTO member (role, full_name, is_deleted, email, password, creation_date)"
+  @Insert("INSERT INTO member (role, full_name, email, password, creation_date)"
           + " VALUES (#{member.role}, #{member.fullName}, "
-          + "#{member.isDeleted}, #{member.email}, #{member.password}, #{member.creationDate})")
+          + "#{member.email}, #{member.password}, #{member.creationDate})")
   @Options(useGeneratedKeys = true, keyProperty = "id")
   void save(@Param("member") Member member);
 
   @Update("UPDATE member SET email=#{member.email}, password=#{member.password},"
           + " access_token=#{member.accessToken}, refresh_token=#{member.refreshToken}, role=#{member.role},"
-          + "full_name=#{member.fullName}, creation_date=#{member.creationDate}, "
-          + "is_deleted=#{member.isDeleted}"
+          + "full_name=#{member.fullName}, creation_date=#{member.creationDate} "
           + "WHERE id=#{member.id}")
   void update(@Param("member") Member member);
 
@@ -33,7 +32,15 @@ public interface MemberRepository {
   @Select("SELECT * FROM member WHERE id=#{id}")
   Member findById(@Param("id") Long id);
 
-  @Select("SELECT * FROM member WHERE member_team_id=#{id} ORDER BY id ASC")
+  @Select("SELECT member.id, member.id, " +
+          "member.role, member.full_name, " +
+          "member.email, member.password, " +
+          "member.access_token, member.refresh_token, " +
+          "member.creation_date " +
+          "FROM member " +
+          "INNER JOIN member_team_list mtl " +
+          "ON member.id = mtl.member_id " +
+          "WHERE mtl.member_team_id=1 ORDER BY id ASC")
   List<Member> findByTeamId(@Param("id") Long id);
 
   @Select("SELECT m.id, m.role, m.full_name, m.member_team_id, m.is_deleted, m.creation_date FROM member m "

@@ -35,7 +35,7 @@ public class MemberTeamService {
     memberTeam.setTeamName(memberTeamName);
     memberTeamRepository.save(memberTeam);
     addMemberTeamToListInDatabase(accessToken, memberTeam);
-    return getTeamByMemberAccessToken(memberTeam.getId());
+    return getTeamById(memberTeam.getId());
   }
 
   private void addMemberTeamToListInDatabase(String accessToken, MemberTeam memberTeam) {
@@ -43,19 +43,15 @@ public class MemberTeamService {
     memberTeamListService.createNewEntry(member.getId(), memberTeam.getId());
   }
 
-  public MemberTeam getTeamByMemberAccessToken(Long teamId) {
+  public MemberTeam getTeamById(Long teamId) {
     MemberTeam memberTeam = memberTeamRepository.findTeamById(teamId);
     memberTeam.setMembersList(memberService.findMembersByTeamId(teamId));
     return memberTeam;
   }
 
-  public MemberTeam getTeamById(Long id) {
-    return memberTeamRepository.findTeamById(id);
-  }
-
   public void deleteMemberFromTeamByMemberId(Long memberId) {
     Member member = memberService.findMemberById(memberId);
-    member.setIsDeleted(true);
+//    member.setIsDeleted(true);
     memberService.updateMember(member);
   }
 

@@ -26,8 +26,6 @@ public class Member {
 
   private List<MemberTeamListDisplay> memberTeamListDisplays;
 
-  private Boolean isDeleted;
-
   private List<Plan> plans;
 
   private String accessToken;

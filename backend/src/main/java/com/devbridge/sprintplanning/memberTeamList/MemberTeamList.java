@@ -13,6 +13,8 @@ public class MemberTeamList {
 
     private Long id;
 
+    private Boolean isDeleted;
+
     private Long memberId;
 
     private Long memberTeamId;

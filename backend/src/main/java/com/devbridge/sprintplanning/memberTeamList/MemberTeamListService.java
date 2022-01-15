@@ -14,13 +14,13 @@ public class MemberTeamListService {
         this.memberTeamListRepository = memberTeamListRepository;
     }
 
-    public MemberTeamList createNewEntry(Long memberId, Long memberTeamId) {
+    public void createNewEntry(Long memberId, Long memberTeamId) {
         MemberTeamList memberTeamList = new MemberTeamList();
         memberTeamList.setCreationDate(LocalDateTime.now());
         memberTeamList.setMemberId(memberId);
         memberTeamList.setMemberTeamId(memberTeamId);
+        memberTeamList.setIsDeleted(false);
         memberTeamListRepository.save(memberTeamList);
-        return memberTeamList;
     }
 
     public List<MemberTeamList> getListOfMemberTeamsByUserId(Long memberId) {

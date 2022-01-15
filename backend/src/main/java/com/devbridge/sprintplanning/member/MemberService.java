@@ -57,7 +57,6 @@ public class MemberService implements UserDetailsService {
 
   public Member createNewMember(MemberRegister memberRegister) {
     Member member = new Member();
-    member.setIsDeleted(false);
     member.setCreationDate(LocalDateTime.now());
     member.setPassword(passwordEncoder.encode(memberRegister.getPassword()));
     member.setFullName(memberRegister.getFullName());
@@ -81,19 +80,24 @@ public class MemberService implements UserDetailsService {
 
   public Member findMemberByAccessToken(String accessToken) {
     Member member = memberRepository.findByAccessToken(accessToken);
+    setListOfTeamsThatMemberIsIn(member);
+    return member;
+  }
+
+  private void setListOfTeamsThatMemberIsIn(Member member) {
     List<MemberTeamList> memberTeamList = memberTeamListService.getListOfMemberTeamsByUserId(member.getId());
     List<MemberTeamListDisplay> memberTeamListDisplayList = new ArrayList<>();
-    for (MemberTeamList memberTeamListToDisplay:
+    for (MemberTeamList memberTeamListIterate:
          memberTeamList) {
-      MemberTeam memberTeam = memberTeamRepository.findTeamById(memberTeamListToDisplay.getMemberTeamId());
+      MemberTeam memberTeam = memberTeamRepository.findTeamById(memberTeamListIterate.getMemberTeamId());
       MemberTeamListDisplay memberTeamListDisplay = new MemberTeamListDisplay();
       memberTeamListDisplay.setMemberTeamId(memberTeam.getId());
       memberTeamListDisplay.setTeamName(memberTeam.getTeamName());
-      memberTeamListDisplay.setId(memberTeamListToDisplay.getId());
+      memberTeamListDisplay.setId(memberTeamListIterate.getId());
+      memberTeamListDisplay.setIsDeleted(memberTeamListIterate.getIsDeleted());
       memberTeamListDisplayList.add(memberTeamListDisplay);
     }
     member.setMemberTeamListDisplays(memberTeamListDisplayList);
-    return member;
   }
 
   public List<Member> findMemberByTeamIdForSprint(Long sprintId) {

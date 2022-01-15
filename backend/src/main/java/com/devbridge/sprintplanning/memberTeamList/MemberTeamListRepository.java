@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 public interface MemberTeamListRepository {
 
-    @Insert("INSERT INTO member_team_list(member_id, member_team_id, creation_date)"
-            + " VALUES (#{memberTeamList.memberId}, #{memberTeamList.memberTeamId},"
-            + "#{memberTeam.creationDate})")
+    @Insert("INSERT INTO member_team_list(member_id, member_team_id, is_deleted, creation_date)"
+            + " VALUES (#{memberTeamList.memberId}, #{memberTeamList.memberTeamId}, #{memberTeamList.isDeleted}, "
+            + "#{memberTeamList.creationDate})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void save(@Param("memberTeamList") MemberTeamList memberTeamList);
 

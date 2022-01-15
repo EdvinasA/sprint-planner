@@ -22,7 +22,7 @@ public class MemberTeamController {
 
   @GetMapping("{teamId}")
   public MemberTeam getTeamWithAllMembersByTeamId(@PathVariable String teamId) {
-    return memberTeamService.getTeamByMemberAccessToken(Long.parseLong(teamId));
+    return memberTeamService.getTeamById(Long.parseLong(teamId));
   }
 
   @PostMapping("{memberTeamName}/{accessToken}")

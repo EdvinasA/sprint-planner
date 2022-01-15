@@ -163,7 +163,7 @@ function ManageTeam() {
           />
           {team.membersList?.map((user, index) => (
               <>
-                {user.isDeleted === false && (
+                {/*{user.isDeleted === false && (*/}
                     <TableRow hover key={index} style={{ border: "1px solid rgba(224, 224, 224, 1)" }}>
                       <TableCell className={classes.displayPictureTableCell}>{index}</TableCell>
                       <TableCell className={classes.displayFullNameAndRoleTableCell}>{user.fullName}
@@ -213,14 +213,14 @@ function ManageTeam() {
                         )}
                       </TableCell>
                     </TableRow>
-                )}
+                {/*)}*/}
               </>
           ))}
         </TableBody>
     );
   }
 
-  const numberOfMembers = team.membersList.filter(member => member.isDeleted === false).length;
+  const numberOfMembers = team.membersList.filter(member => member).length;
 
   return (
       <Container maxWidth={false} className={classes.containerRoot}>

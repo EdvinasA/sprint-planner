@@ -9,7 +9,7 @@ import { setTrue } from "../../redux/slices/loginAlertSlice/loginAlertSlice";
 export default () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const initialValues = { email: "", password: "", fullName: "" };
+  const initialValues = { email: "edvinasalimas98@gmail.com", password: "123456", fullName: "Edvinas Alimas" };
   const [registerForm, setLoginFormValues] = React.useState(initialValues);
   const [registerFormError, setRegisterFormError] = React.useState({});
 

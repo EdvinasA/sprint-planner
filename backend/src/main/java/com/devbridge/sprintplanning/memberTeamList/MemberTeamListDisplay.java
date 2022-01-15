@@ -12,5 +12,6 @@ public class MemberTeamListDisplay {
     private Long id;
     private Long MemberTeamId;
     private String teamName;
+    private Boolean isDeleted;
 
 }

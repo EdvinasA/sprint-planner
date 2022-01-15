@@ -45,7 +45,6 @@ CREATE TABLE member(
   password varchar(255),
   access_token varchar(255),
   refresh_token varchar(255),
-  is_deleted BOOLEAN,
   creation_date TIMESTAMP
 );
 
@@ -86,6 +85,7 @@ CREATE TABLE member_sprint(
 --changeset Povilas:8
 CREATE TABLE member_team_list(
   id BIGSERIAL PRIMARY KEY NOT NULL,
+  is_deleted BOOLEAN,
   member_id BIGSERIAL,
   member_team_id BIGSERIAL,
   FOREIGN KEY (member_id) REFERENCES member(id),
