@@ -45,7 +45,6 @@ CREATE TABLE member(
   password varchar(255),
   access_token varchar(255),
   refresh_token varchar(255),
-  member_team_id BIGINT,
   is_deleted BOOLEAN,
   creation_date TIMESTAMP
 );

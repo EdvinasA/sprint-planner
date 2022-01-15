@@ -14,8 +14,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface MemberRepository {
-  @Insert("INSERT INTO member (role, full_name, member_team_id, is_deleted, email, password, creation_date)"
-          + " VALUES (#{member.role}, #{member.fullName}, #{member.memberTeamId}, "
+  @Insert("INSERT INTO member (role, full_name, is_deleted, email, password, creation_date)"
+          + " VALUES (#{member.role}, #{member.fullName}, "
           + "#{member.isDeleted}, #{member.email}, #{member.password}, #{member.creationDate})")
   @Options(useGeneratedKeys = true, keyProperty = "id")
   void save(@Param("member") Member member);
@@ -23,7 +23,6 @@ public interface MemberRepository {
   @Update("UPDATE member SET email=#{member.email}, password=#{member.password},"
           + " access_token=#{member.accessToken}, refresh_token=#{member.refreshToken}, role=#{member.role},"
           + "full_name=#{member.fullName}, creation_date=#{member.creationDate}, "
-          + "member_team_id=#{member.memberTeamId}, "
           + "is_deleted=#{member.isDeleted}"
           + "WHERE id=#{member.id}")
   void update(@Param("member") Member member);

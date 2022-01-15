@@ -2,8 +2,12 @@ package com.devbridge.sprintplanning.member;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.devbridge.sprintplanning.memberTeam.MemberTeamListDisplay;
+import com.devbridge.sprintplanning.memberTeam.MemberTeam;
+import com.devbridge.sprintplanning.memberTeam.MemberTeamRepository;
 import com.devbridge.sprintplanning.memberTeam.MemberTeamService;
+import com.devbridge.sprintplanning.memberTeamList.MemberTeamList;
+import com.devbridge.sprintplanning.memberTeamList.MemberTeamListDisplay;
+import com.devbridge.sprintplanning.memberTeamList.MemberTeamListService;
 import com.devbridge.sprintplanning.plan.Plan;
 import com.devbridge.sprintplanning.plan.PlanService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,12 +40,16 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class MemberService implements UserDetailsService {
 
   private final MemberRepository memberRepository;
+  private final MemberTeamListService memberTeamListService;
+  private final MemberTeamRepository memberTeamRepository;
   private final PlanService planService;
   private final BCryptPasswordEncoder passwordEncoder;
   private final AuthenticationManager authenticationManager;
 
-  public MemberService(MemberRepository memberRepository, PlanService planService, BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
+  public MemberService(MemberRepository memberRepository, MemberTeamListService memberTeamListService, MemberTeamRepository memberTeamRepository, PlanService planService, BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
     this.memberRepository = memberRepository;
+    this.memberTeamListService = memberTeamListService;
+    this.memberTeamRepository = memberTeamRepository;
     this.planService = planService;
     this.passwordEncoder = passwordEncoder;
     this.authenticationManager = authenticationManager;
@@ -72,7 +80,20 @@ public class MemberService implements UserDetailsService {
   }
 
   public Member findMemberByAccessToken(String accessToken) {
-    return memberRepository.findByAccessToken(accessToken);
+    Member member = memberRepository.findByAccessToken(accessToken);
+    List<MemberTeamList> memberTeamList = memberTeamListService.getListOfMemberTeamsByUserId(member.getId());
+    List<MemberTeamListDisplay> memberTeamListDisplayList = new ArrayList<>();
+    for (MemberTeamList memberTeamListToDisplay:
+         memberTeamList) {
+      MemberTeam memberTeam = memberTeamRepository.findTeamById(memberTeamListToDisplay.getMemberTeamId());
+      MemberTeamListDisplay memberTeamListDisplay = new MemberTeamListDisplay();
+      memberTeamListDisplay.setMemberTeamId(memberTeam.getId());
+      memberTeamListDisplay.setTeamName(memberTeam.getTeamName());
+      memberTeamListDisplay.setId(memberTeamListToDisplay.getId());
+      memberTeamListDisplayList.add(memberTeamListDisplay);
+    }
+    member.setMemberTeamListDisplays(memberTeamListDisplayList);
+    return member;
   }
 
   public List<Member> findMemberByTeamIdForSprint(Long sprintId) {

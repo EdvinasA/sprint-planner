@@ -3,6 +3,7 @@ package com.devbridge.sprintplanning.memberTeam;
 import com.devbridge.sprintplanning.member.Member;
 import com.devbridge.sprintplanning.member.MemberService;
 import com.devbridge.sprintplanning.member.RoleType;
+import com.devbridge.sprintplanning.memberTeamList.MemberTeamListService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -14,10 +15,12 @@ public class MemberTeamService {
 
   private final MemberService memberService;
   private final MemberTeamRepository memberTeamRepository;
+  private final MemberTeamListService memberTeamListService;
 
-  public MemberTeamService(MemberService memberService, MemberTeamRepository memberTeamRepository) {
+  public MemberTeamService(MemberService memberService, MemberTeamRepository memberTeamRepository, MemberTeamListService memberTeamListService) {
     this.memberService = memberService;
     this.memberTeamRepository = memberTeamRepository;
+    this.memberTeamListService = memberTeamListService;
   }
 
   public MemberTeam createTeam(MemberTeam memberTeam) {
@@ -31,33 +34,19 @@ public class MemberTeamService {
     memberTeam.setCreationDate(LocalDateTime.now());
     memberTeam.setTeamName(memberTeamName);
     memberTeamRepository.save(memberTeam);
-    setMemberToTeamAndUpdateMemberInDatabase(accessToken, memberTeam);
-    return getTeamByMemberAccessToken(accessToken, memberTeam.getId());
+    addMemberTeamToListInDatabase(accessToken, memberTeam);
+    return getTeamByMemberAccessToken(memberTeam.getId());
   }
 
-  private void setMemberToTeamAndUpdateMemberInDatabase(String accessToken, MemberTeam memberTeam) {
+  private void addMemberTeamToListInDatabase(String accessToken, MemberTeam memberTeam) {
     Member member = memberService.findMemberByAccessToken(accessToken);
-    member.getMemberTeamId().add(memberTeam.getId());
-    memberService.updateMember(member);
+    memberTeamListService.createNewEntry(member.getId(), memberTeam.getId());
   }
 
-  public MemberTeam getTeamByMemberAccessToken(String accessToken, Long teamId) {
-    Member member = memberService.findMemberByAccessToken(accessToken);
+  public MemberTeam getTeamByMemberAccessToken(Long teamId) {
     MemberTeam memberTeam = memberTeamRepository.findTeamById(teamId);
     memberTeam.setMembersList(memberService.findMembersByTeamId(teamId));
     return memberTeam;
-  }
-
-  public List<MemberTeamListDisplay> getTeamListByMemberAccessToken(String accessToken) {
-    List<MemberTeamListDisplay> memberTeamListDisplayList = new ArrayList<>();
-//    List<Long> listOfMemberTeamIds = memberRepository.findMemberTeamIdsByAccessToken(accessToken);
-//    for (Long id:
-//            listOfMemberTeamIds) {
-//      MemberTeamListDisplay memberTeamListDisplay = new MemberTeamListDisplay();
-//      memberTeamListDisplay.setId(id);
-//      memberTeamListDisplay.setTeamName(memberTeamService.getTeamById(id).getTeamName());
-//    }
-    return memberTeamListDisplayList;
   }
 
   public MemberTeam getTeamById(Long id) {
