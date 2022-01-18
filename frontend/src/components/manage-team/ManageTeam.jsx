@@ -28,13 +28,13 @@ import DialogRemoveMember from "./dialog-remove-member/DialogRemoveMember";
 import GenericButton from "../buttons/generic-button/GenericButton";
 import listOfRoles from "../../api/ListOfRoles";
 import { getMember } from "../../redux/member/memberActions";
-import CreateTeamDialog from "./create-team/CreateTeamDialog";
+import CreateTeamDialog from "./dialog-create-team/CreateTeamDialog";
+import DialogSelectTeam from "./dialog-select-team/DialogSelectTeam";
 
 function ManageTeam() {
   const classes = ManageTeamStyles();
 
   const team = useSelector((state) => state?.manageTeam.memberTeam);
-
   const [openRemove, setOpenRemove] = React.useState(false);
   const [openAddNewMember, setOpenAddNewMember] = React.useState(false);
 
@@ -45,12 +45,13 @@ function ManageTeam() {
   const [editMemberRoleId, setEditMemberRoleId] = React.useState(null);
   const [displaySaveButton, setDisplaySaveButton] = React.useState(false);
   const [openCreateTeam, setOpenCreateTeam] = React.useState(false);
+  const [openChangeTeam, setOpenChangeTeam] = React.useState(false);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getMember(localStorage.getItem("access_token")));
-    dispatch(getTeam(localStorage.getItem("access_token")));
+    dispatch(getTeam(1));
   }, [dispatch]);
 
   const handleExistingMemberRoleChange = (user, event) => {
@@ -137,6 +138,14 @@ function ManageTeam() {
   const handleCreateNewTeam = (teamName) => {
     setOpenCreateTeam(false);
     dispatch(createNewTeam(teamName));
+  };
+
+  const handleOpenChangeTeam = () => {
+    setOpenChangeTeam(true);
+  };
+
+  const handleCloseChangeTeam = () => {
+    setOpenChangeTeam(false);
   };
 
   function TableRowHeaderInformation() {
@@ -290,6 +299,21 @@ function ManageTeam() {
             />
             </>
         )}
+        <div style={{ paddingTop: "100px" }}>
+          <Button onClick={handleOpenChangeTeam}>Change team</Button>
+          <DialogSelectTeam
+            open={openChangeTeam}
+            onClose={handleCloseChangeTeam}
+          />
+        </div>
+        <div>
+          <Button onClick={handleOpenCreateTeamDialog}>Create new team</Button>
+          <CreateTeamDialog
+            open={openCreateTeam}
+            onClose={handleCloseCreateTeamDialog}
+            onCloseAdd={handleCreateNewTeam}
+          />
+        </div>
       </Container>
   );
 }

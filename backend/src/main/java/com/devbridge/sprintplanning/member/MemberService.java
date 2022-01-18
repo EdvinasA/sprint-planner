@@ -75,7 +75,12 @@ public class MemberService implements UserDetailsService {
   }
 
   public List<Member> findMembersByTeamId(Long teamId) {
-    return memberRepository.findByTeamId(teamId);
+    List<Member> memberList = memberRepository.findByTeamId(teamId);
+    for (Member member:
+         memberList) {
+      setListOfTeamsThatMemberIsIn(member);
+    }
+    return memberList;
   }
 
   public Member findMemberByAccessToken(String accessToken) {
@@ -85,7 +90,7 @@ public class MemberService implements UserDetailsService {
   }
 
   private void setListOfTeamsThatMemberIsIn(Member member) {
-    List<MemberTeamList> memberTeamList = memberTeamListService.getListOfMemberTeamsByUserId(member.getId());
+    List<MemberTeamList> memberTeamList = getMemberTeamList(member.getId());
     List<MemberTeamListDisplay> memberTeamListDisplayList = new ArrayList<>();
     for (MemberTeamList memberTeamListIterate:
          memberTeamList) {
@@ -98,6 +103,10 @@ public class MemberService implements UserDetailsService {
       memberTeamListDisplayList.add(memberTeamListDisplay);
     }
     member.setMemberTeamListDisplays(memberTeamListDisplayList);
+  }
+
+  public List<MemberTeamList> getMemberTeamList(Long memberId) {
+    return memberTeamListService.getListOfMemberTeamsByUserId(memberId);
   }
 
   public List<Member> findMemberByTeamIdForSprint(Long sprintId) {

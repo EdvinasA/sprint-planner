@@ -45,7 +45,7 @@ const AddSprintForm = () => {
 
   useEffect(() => {
     dispatch(getNewSprint());
-    dispatch(getTeam(localStorage.getItem("access_token")));
+    dispatch(getTeam(1));
   }, [dispatch]);
 
   const filteredMembers = team.membersList.filter(member => member.isDeleted === false);

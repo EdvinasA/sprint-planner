@@ -1114,6 +1114,7 @@ UC/10
     </table>
     <table id="54" parent="20" name="task">
       <ObjectId>188069</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>CHANGE_ME</Owner>
       <StateNumber>24182</StateNumber>
     </table>
