@@ -51,7 +51,7 @@ function ManageTeam() {
 
   useEffect(() => {
     dispatch(getMember(localStorage.getItem("access_token")));
-    dispatch(getTeam(1));
+    dispatch(getTeam(localStorage.getItem("selectedTeamId")));
   }, [dispatch]);
 
   const handleExistingMemberRoleChange = (user, event) => {
@@ -138,6 +138,7 @@ function ManageTeam() {
   const handleCreateNewTeam = (teamName) => {
     setOpenCreateTeam(false);
     dispatch(createNewTeam(teamName));
+    localStorage.setItem("selectedTeamId", team.id);
   };
 
   const handleOpenChangeTeam = () => {

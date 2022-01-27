@@ -45,10 +45,10 @@ const AddSprintForm = () => {
 
   useEffect(() => {
     dispatch(getNewSprint());
-    dispatch(getTeam(1));
+    dispatch(getTeam(localStorage.getItem("selectedTeamId")));
   }, [dispatch]);
 
-  const filteredMembers = team.membersList.filter(member => member.isDeleted === false);
+  const filteredMembers = team.membersList;
 
   const onSave = () => {
     dispatch(resetSprint({
@@ -56,7 +56,7 @@ const AddSprintForm = () => {
       startDate: sprint.startDate,
       endDate: sprint.endDate,
       tasks: [...sprint.tasks, ...sprint.carryovers],
-      memberTeamId: 1,
+      memberTeamId: localStorage.getItem("selectedTeamId"),
       isActive: false,
       isHistorical: false,
       creationDate: null

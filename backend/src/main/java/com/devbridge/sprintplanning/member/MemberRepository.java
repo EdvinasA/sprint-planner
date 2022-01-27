@@ -32,7 +32,7 @@ public interface MemberRepository {
   @Select("SELECT * FROM member WHERE id=#{id}")
   Member findById(@Param("id") Long id);
 
-  @Select("SELECT member.id, member.id, " +
+  @Select("SELECT member.id," +
           "member.role, member.full_name, " +
           "member.email, member.password, " +
           "member.access_token, member.refresh_token, " +
@@ -40,10 +40,10 @@ public interface MemberRepository {
           "FROM member " +
           "INNER JOIN member_team_list mtl " +
           "ON member.id = mtl.member_id " +
-          "WHERE mtl.member_team_id=1 ORDER BY id ASC")
+          "WHERE mtl.member_team_id=#{id} ORDER BY id ASC")
   List<Member> findByTeamId(@Param("id") Long id);
 
-  @Select("SELECT m.id, m.role, m.full_name, m.member_team_id, m.is_deleted, m.creation_date FROM member m "
+  @Select("SELECT m.id, m.role, m.full_name, m.creation_date FROM member m "
           + "INNER JOIN member_sprint ms ON m.id = ms.member_id WHERE ms.sprint_id=#{sprintId}")
   List<Member> findByTeamIdAndIfMemberIsInSprint(@Param("sprintId") Long sprintId);
 

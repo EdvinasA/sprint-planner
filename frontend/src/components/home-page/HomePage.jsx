@@ -11,11 +11,11 @@ import RotatingExpandContent from "../shared/expand-content/RotatingExpandConten
 import { getSprint, startSprint } from "../../redux/sprints/sprintActions";
 import { carryOverTasks } from "../../redux/newSprint/newSprintActions";
 import TasksTable from "../tasks/TasksTable";
-import { getTeam } from "../../redux/manageTeams/manageTeamActions";
 import EndSprintButton from "../buttons/end-sprint-button/EndSprintButton";
 import StartSprintButton from "../buttons/start-sprint-button/StartSprintButton";
 import EndSprintModule from "../sprints/EndSprintModule";
 import { getMember } from "../../redux/member/memberActions";
+import { getSprintList } from "../../redux/sprintList/sprintListActions";
 
 function HomePage() {
   const [expanded, setExpanded] = React.useState(false);
@@ -33,12 +33,12 @@ function HomePage() {
   };
 
   const sprint = useSelector((state) => state?.sprints.sprint);
-  const member = useSelector((state) => state?.member.member);
   const activeSprintTemp = useSelector((state) => state?.sprintList.activesprint);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getMember(localStorage.getItem("access_token")));
+    dispatch(getSprintList(localStorage.getItem("selectedTeamId")));
   }, [dispatch]);
 
   useEffect(() => {

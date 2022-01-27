@@ -24,6 +24,7 @@ function DialogSelectTeam(props) {
   const handleSelectTeam = (memberTeamId) => {
     dispatch(getTeam(memberTeamId));
     dispatch(getMember(localStorage.getItem("access_token")));
+    localStorage.setItem("selectedTeamId", memberTeamId);
     onClose();
   };
 

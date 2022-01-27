@@ -78,7 +78,7 @@ function SideBar() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSprintList());
+    dispatch(getSprintList(localStorage.getItem("selectedTeamId")));
   }, [dispatch]);
 
   const classes = useStyles();

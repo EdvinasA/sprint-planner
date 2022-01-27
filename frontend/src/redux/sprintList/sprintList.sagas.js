@@ -10,9 +10,9 @@ import {
   getSprintListSuccess,
 } from './sprintListActions';
 
-export function* getSprintListSaga(action) {
+export function* getSprintListSaga(actions) {
   try {
-    const apiResult = yield call(getSprintList, action.payload);
+    const apiResult = yield call(getSprintList, actions.payload);
     yield put(getSprintListSuccess(apiResult));
   } catch (e) {
     yield put(getSprintListFailed(e))
