@@ -75,7 +75,7 @@ function HomePage() {
   variant="outlined"
   onClick={handleOpenEndSprintModal}
 >
-              END SPRINT
+  END SPRINT
 </EndSprintButton>
             ) }
 
@@ -86,7 +86,7 @@ function HomePage() {
           isOpen={endSprintOpen}
           setOpen={setEndSprintOpen}
         />
-        <h1>{sprint.title}</h1>
+        <h1>{sprint.title}</h1> {sprint.isHistorical ? <span> (Finished)</span> : null}
         <h4><Moment format="DD/MM/YYYY">{sprint.startDate}</Moment> - <Moment format="DD/MM/YYYY">{sprint.endDate}</Moment></h4>
       </Container>
           </>

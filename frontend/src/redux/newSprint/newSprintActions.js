@@ -70,7 +70,7 @@ export const createSprint = (sprint) => ({
     startDate: sprint.startDate,
     endDate: sprint.endDate,
     tasks: [...sprint.tasks, ...sprint.carryovers],
-    memberTeamId: 1,
+    memberTeamId: localStorage.getItem("selectedTeamId"),
     membersList: sprint.membersList,
     isActive: false,
     isHistorical: false,

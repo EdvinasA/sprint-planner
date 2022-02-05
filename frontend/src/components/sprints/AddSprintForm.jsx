@@ -268,7 +268,9 @@ const AddSprintForm = () => {
       </div>
       <div className={classes.stayAtTheBottomFormAddAndCancel}>
         <Toolbar>
+          <Link to="/">
           <Button variant="contained" onClick={onSave} sx={{ mr: 2 }}>SAVE</Button>
+          </Link>
           <Link to="/">
           <Button variant="outlined" onClick={handleCancelNewSprint}>CANCEL</Button>
           </Link>
